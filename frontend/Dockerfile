@@ -7,5 +7,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY ./package.json /app
 COPY . .
 RUN npm install
+
+RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
+
 RUN npm update
 CMD ["npm", "start"] 
