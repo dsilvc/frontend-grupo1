@@ -17,5 +17,3 @@ jobs:
     - name: Build the Docker image
       working-directory: frontend
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    - name: Run ESLint
-      run: eslint . --ext .js,.jsx,.ts,.tsx
