@@ -1,4 +1,6 @@
 import "@/styles/globals.css";
+import "../styles/landingPage.css";
+import "../styles/Login.css"
 
 import { Prata, Work_Sans } from "next/font/google";
 import type { AppProps } from "next/app";

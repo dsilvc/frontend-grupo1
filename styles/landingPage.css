@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pragati+Narrow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
+
+.landing-page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display:flex;
+    flex-direction: row;
+  }
+  
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .background-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(68, 68, 8, 0.428);
+    opacity: 0.5; /* Adjust the opacity to control the intensity of the yellow filter */
+  }
+  
+  
+  .content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    text-align: center;
+    color: #ffffff;
+  }
+
+.text-layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content:center;
+    min-height: 15rem !important;
+    text-align: center;
+}
+
+.text-title{
+    font-size: 2.5rem !important;
+    color:#ffffff !important;
+    font-family: Prata !important;
+    text-align: center;
+    letter-spacing: 0.02em !important;
+    z-index: 2;
+}
+.text-title .text-title-uc {
+    text-align: center;
+    font-size: 13rem !important;
+    font-family: 'Pragati Narrow', sans-serif;
+    color: rgba(38, 109, 216, 0.41);
+    z-index: -1;
+  }
+
+.text-layout-secondary {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content:center;
+    margin-bottom: 1rem !important;
+}
+
+.buttons-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content:center;
+}
+
+
+.text-layout-secondary .text {
+    font-size: 1.5rem;
+    color:#ffffff !important;
+    font-family: 'Work Sans' !important;
+    text-align: center;
+    letter-spacing: 0.02em !important;
+    z-index: 2;
+}
+
+.button-container{
+    opacity: 0.9;
+    border-radius: 0px !important;
+    padding: 1em;
+}
+
+.right-button{
+  background-color: #1677ff !important;
+}
+
+.left-button{
+  background-color: #ffffff !important;
+}

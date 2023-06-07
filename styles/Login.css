@@ -1,0 +1,34 @@
+.login-page {
+    position: relative;
+    height: 100vh;
+    display:flex;
+    flex-direction: row;
+  }
+
+.text-title-logo{
+    position:relative;
+    font-size: 2rem !important;
+    color:#ffffff !important;
+    font-family: Prata !important;
+    text-align: start;
+    bottom: 6rem;
+    right: 8rem;
+    letter-spacing: 0.02em !important;
+    z-index: 2;
+}
+.text-title-uc-logo {
+    position:relative;
+    top: 3rem;
+    left: 14.75rem;
+    text-align: start;
+    font-size: 12rem !important;
+    font-family: 'Pragati Narrow', sans-serif;
+    color: rgba(38, 109, 216, 0.41);
+    z-index: -1;
+}
+
+.paginas-logo{
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
