@@ -1,10 +1,6 @@
 import { FunctionComponent, ReactNode } from "react";
-import Link from 'next/link';
 import { Button, Col, Layout, Typography, Row } from "antd";
 
-const handleClick = () =>  {
-  console.log('You clicked!');
-}
 
 interface LandingPageProps {
   children: ReactNode;

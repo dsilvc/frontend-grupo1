@@ -9,12 +9,14 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col">
       <div className="flex h-[144px] w-screen items-center justify-between bg-[#283645] pl-[47.5px] pr-16">
+        <Link href="/">
         <div className="relative flex h-full items-center justify-center overflow-clip">
           <h1 className="mb-3 text-[200px] font-bold text-[#2e4d7e]">UC</h1>
           <h1 className="absolute inset-0 flex h-full w-full items-center justify-center font-prata text-3xl text-white">
             Páginas Celestes
           </h1>
         </div>
+        </Link>
         <div className="flex space-x-5 text-white">
           <Link href="#" className="font-prata text-3xl">
             Mi Perfil
