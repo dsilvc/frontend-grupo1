@@ -1,0 +1,76 @@
+.login-page {
+    position: relative;
+    height: 100vh;
+    display:flex;
+    flex-direction: row;
+}
+
+.text-title-logo{
+    position:relative;
+    font-size: 2rem !important;
+    color:#ffffff !important;
+    font-family: Prata !important;
+    text-align: start;
+    letter-spacing: 0.02em !important;
+    bottom: 6rem;
+    right: 6rem;
+    z-index: 2;
+}
+.text-title-uc-logo {
+    position:relative;
+    top: 3rem;
+    left: 14.4rem;
+    text-align: start;
+    font-size: 12rem !important;
+    font-family: 'Pragati Narrow', sans-serif;
+    color: rgba(38, 109, 216, 0.41);
+    z-index: -1;
+}
+
+.logo-uc{
+  width: 9rem;
+  height: 4rem;
+  margin:1%;
+}
+
+.pags-uc{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 2%;
+}
+
+.login-display{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login-form{
+  width: 70%;
+}
+
+.login-button{
+  width: 100%;
+  background-color: #1677ff !important;;
+}
+
+.login-col{
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  font-family: 'Pragati Narrow', sans-serif;
+}
+
+.form-title{
+  font-size: 2.5rem !important;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.02em !important;
+  z-index: 2;
+}
