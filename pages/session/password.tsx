@@ -3,9 +3,8 @@ import React from 'react';
 import { Form, Input, Button, Col, Row } from 'antd';
 import type { FormItemProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
-import Logo from "../assets/uc.png";
+import Logo from "../../assets/uc.png";
 import Image from "next/image";
-import Link from 'next/link';
 
 
 interface LoginProps {
@@ -38,7 +37,7 @@ const MyFormItem = ({ name, ...props }: FormItemProps) => {
 };
 
 
-const Login: FunctionComponent<LoginProps> = ({ children }) => {
+const Password: FunctionComponent<LoginProps> = ({ children }) => {
   const onFinish = (value: object) => {
     console.log(value);
   };
@@ -50,39 +49,25 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
           <LogInBackground />
       </Col>
       <Col sm={13} className="login-col">
-        <h1 className="form-title">¡Bienvenido!</h1>
+        <h1 className="form-title">Restauración de contraseña</h1>
         <br></br>
+        <p className="login-form">A continuación te eviaremos un correo electrónico con los pasos a seguir para restaurar la contraseña, 
+            por favor ingresa tu correo electrónico</p>
         <br></br>
         <div className="login-form">
           <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
             <MyFormItemGroup prefix={['user']}>
               <MyFormItemGroup prefix={['name']}>
-                <MyFormItem name="mail" label="Correo UC">
-                  <Input />
-                </MyFormItem>
-                <MyFormItem name="password" label="Contraseña">
+                <MyFormItem name="mail" label="Correo electrónico">
                   <Input />
                 </MyFormItem>
               </MyFormItemGroup>
             </MyFormItemGroup>
-
-            <Link href="/session/password">
-              <p>¿Olvidaste tu contraseña? Presiona aquí</p>
-            </Link>
-            <br></br>
-            <br></br>
-            
-            <Link href="/session/code">
-              <Button type="primary" htmlType="submit" className="login-button">
-                Iniciar Sesión
-              </Button>
-            </Link>
+            <Button type="primary" htmlType="submit" className="login-button" href="/session/newPassword">
+              Recuperar contraseña
+            </Button>
           </Form>
         </div>
-        <br></br>
-        <Link href="/session/signin">
-              <p>¿No tienes cuenta? Regístrate aquí</p>
-            </Link>
       </Col>
       <Col sm={2} className="logo-pos">
         <Image src={Logo} alt="Logo UC" className="logo-uc"/>
@@ -92,4 +77,4 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
   );
   }
 
-export default Login;
+export default Password;
