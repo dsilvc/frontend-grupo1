@@ -1,5 +1,6 @@
 import { FunctionComponent, ReactNode } from "react";
 import { Button, Col, Layout, Typography, Row } from "antd";
+import Link from 'next/link';
 
 
 interface LandingPageProps {
@@ -29,14 +30,18 @@ const LandingPage: FunctionComponent<LandingPageProps> = ({ children }) => {
           </Row>
           <Row className="buttons-layout">
               <Col sm={4} className="button-container">
-                <Button className="left-button"  href="/main/info">
-                    Saber más
-                </Button>
+                <Link href="/main/info">
+                  <Button className="left-button">
+                      Saber más
+                  </Button>
+                </Link>
               </Col>
                 <Col sm={4} className="button-container">
-                <Button type="primary" className="right-button" href="/session"> 
-                    Iniciar Sesión
-                </Button>
+                  <Link href="/session">
+                    <Button type="primary" className="right-button"> 
+                      Iniciar Sesión
+                    </Button>
+                  </Link>
                 </Col>
             
           </Row>

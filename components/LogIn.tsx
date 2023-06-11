@@ -5,6 +5,7 @@ import type { FormItemProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
+import Link from 'next/link';
 
 
 interface LoginProps {
@@ -65,17 +66,23 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
               </MyFormItemGroup>
             </MyFormItemGroup>
 
-            <a href="/session/password">¿Olvidaste tu contraseña? Presiona aquí</a>
+            <Link href="/session/password">
+              <p>¿Olvidaste tu contraseña? Presiona aquí</p>
+            </Link>
             <br></br>
             <br></br>
             
-            <Button type="primary" htmlType="submit" className="login-button" href="/session/code">
-              Iniciar Sesión
-            </Button>
+            <Link href="/session/code">
+              <Button type="primary" htmlType="submit" className="login-button">
+                Iniciar Sesión
+              </Button>
+            </Link>
           </Form>
         </div>
         <br></br>
-        <a href="/session/signin">¿No tienes cuenta? Regístrate aquí</a>
+        <Link href="/session/signin">
+              <p>¿No tienes cuenta? Regístrate aquí</p>
+            </Link>
       </Col>
       <Col sm={2} className="logo-pos">
         <Image src={Logo} alt="Logo UC" className="logo-uc"/>

@@ -5,6 +5,7 @@ import type { FormItemProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
+import Link from 'next/link';
 
 
 interface LoginProps {
@@ -69,13 +70,15 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
               </MyFormItem>
               </MyFormItemGroup>
 
-            <Button type="primary" htmlType="submit" className="login-button" href="/main">
+            <Link href="/main">
+            <Button type="primary" htmlType="submit" className="login-button" >
               Registrarme
             </Button>
+            </Link>
           </Form>
         </div>
         <br></br>
-        <a href="/session">¿Ya tienes cuenta? Ingresa aquí</a>
+        <Link href="/session">¿Ya tienes cuenta? Ingresa aquí</Link>
       </Col>
       <Col sm={2} className="logo-pos">
         <Image src={Logo} alt="Logo UC" className="logo-uc"/>
