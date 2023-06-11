@@ -49,7 +49,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
           <LogInBackground />
       </Col>
       <Col sm={13} className="login-col">
-        <h1 className="form-title">¡Bienvenido!</h1>
+        <h1 className="form-title">Crear Cuenta</h1>
         <br></br>
         <br></br>
         <div className="login-form">
@@ -63,19 +63,19 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
                   <Input />
                 </MyFormItem>
               </MyFormItemGroup>
-            </MyFormItemGroup>
 
-            <a href="/session/password">¿Olvidaste tu contraseña? Presiona aquí</a>
-            <br></br>
-            <br></br>
-            
-            <Button type="primary" htmlType="submit" className="login-button" href="/session/code">
-              Iniciar Sesión
+              <MyFormItem name="password-confirm" label="Repetir Contraseña">
+                <Input />
+              </MyFormItem>
+              </MyFormItemGroup>
+
+            <Button type="primary" htmlType="submit" className="login-button" href="/main">
+              Registrarme
             </Button>
           </Form>
         </div>
         <br></br>
-        <a href="/session/signin">¿No tienes cuenta? Regístrate aquí</a>
+        <a href="/session">¿Ya tienes cuenta? Ingresa aquí</a>
       </Col>
       <Col sm={2} className="logo-pos">
         <Image src={Logo} alt="Logo UC" className="logo-uc"/>
@@ -83,6 +83,6 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
     </Row>
     </>
   );
-  }
+}
 
 export default Login;
