@@ -85,13 +85,13 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
       }).then((response) => {
         router.push('/session/code')
       }).catch((error) => {
-        return error.response?.data.message.includes('password') ? 
-        displayMessage(
-          'La contraseña debe tener al menos 6 caracteres',
-          'error'
-        )
-        : displayMessage(
-          'Faltan datos para poder realizar un registro exitoso',
+        const content :string = error.response?.data.message.includes('password') ? 
+          'La contraseña debe tener al menos 6 caracteres' :
+          error.response?.data.message.includes('username') ? 
+          'El nombre de usuario ya ha sido utilizado'
+        : 'Faltan datos para poder realizar un registro exitoso'
+        return displayMessage(
+          content,
           'error'
         )
       })
