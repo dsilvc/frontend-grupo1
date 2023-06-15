@@ -6,7 +6,10 @@ import LogInBackground from "@/components/LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
 import Link from 'next/link';
+import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+export const SERVER_URL = process.env.serverUrl;
 
 interface LoginProps {
   children: ReactNode;
@@ -54,7 +57,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         <br></br>
         <br></br>
         <div className="login-form">
-          <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
+          <Form name="form_item_path" layout="vertical" onFinish={(values) => onFinish(values)}>
             <MyFormItemGroup prefix={['user']}>
               <MyFormItemGroup prefix={['name']}>
                 <MyFormItem name="mail" label="Correo UC">
