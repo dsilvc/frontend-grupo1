@@ -1,0 +1,17 @@
+.info-layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    min-height: 15rem !important;
+    text-align: center;
+}
+
+.info-text{
+    font-size: 1rem;
+    color:rgb(255, 255, 255) !important;
+    font-family: 'Work Sans' !important;
+    text-align: center;
+    letter-spacing: 0.02em !important;
+    z-index: 2;
+}
