@@ -56,26 +56,23 @@ type User = {
   firstName: string;
   lastName: string;
   username: string;
+  isSubmitted: boolean;
+  token: string;
 };
 
 const Login: FunctionComponent<LoginProps> = ({ children }) => {
   const router = useRouter()
   const dispatch = useAppDispatch();
-  const isSubmitted = useAppSelector((state => state.userReducer.value.isSubmitted))
-  const state = useState(useAppSelector((state => state.userReducer)))
+  const email = useAppSelector((state) => state.userReducer.value.email)
 
   useEffect(() => {
-    if (isSubmitted){
+    if (email.length > 0){
       router.push('/session/code') 
     }
-  }, [isSubmitted, router])
+  }, [email, router])
 
   const onFinish = (value: object) => {
-      //     * **firsName**: nombre de pila del usuario.
-      // * **lastName**: apellido(s) de pila del usuario.
-      // * **email**: correo electrónico, es *unique* y debe ser parte de la comunidad uc.
-      // * **username**: nombre de usuario, es *unique*.
-      // * **password**: clave secreta del usuario, minimo 6 caracteres.
+
     const data : User = {...value.user.credentials, ...value.user.userInformation}
     if (!data.email.endsWith('@uc.cl')){
       displayMessage(
@@ -95,6 +92,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         }
       }).then((response) => {
         data.isSubmitted = true
+        data.token = ''
         dispatch(setUser(data))
         
       }).catch((error) => {
@@ -108,11 +106,6 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
           'error'
         )
       })
-    } else {
-      displayMessage(
-        'Las contraseñas ingresadas no coinciden',
-        'error'
-      )
     }
   };
 

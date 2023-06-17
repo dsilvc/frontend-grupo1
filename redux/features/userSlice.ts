@@ -8,17 +8,19 @@ type userState = {
     lastName: string;
     username: string;
     isSubmitted: boolean;
+    token: string;
   }
 };
 
 
 const initialState = {
     value : {
-      email : 'prueba@uc.cl',
+      email : '',
       firstName: 'Juan',
       lastName: 'Perez',
       username: 'juanperez',
-      isSubmitted: false
+      isSubmitted: false,
+      token: '',
     }
 } as userState;
 
@@ -30,10 +32,17 @@ export const userSlice = createSlice({
     setUser: (state, action:  PayloadAction<any>) => {
       state.value = action.payload;
     },
+
+    setToken: (state, action:  PayloadAction<any>) => {
+      state.value.token = action.payload;
+    },
+    setEmail: (state, action:  PayloadAction<any>) => {
+      state.value.email = action.payload;
+    },
     // // Special reducer for hydrating the state
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setToken, setEmail } = userSlice.actions;
 export default userSlice.reducer;
 ;
