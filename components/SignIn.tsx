@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import {Button, Col, Form, Input, message, Row } from 'antd';
 import type { FormItemProps } from 'antd';
+import type { MessageArgsProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
@@ -22,8 +23,7 @@ interface MyFormItemGroupProps {
   children: React.ReactNode;
 }
 
-
-function displayMessage(messageToDisplay :string, typeMessage: string) {
+function displayMessage(messageToDisplay :string, typeMessage: MessageArgsProps ) {
   message.open({
     type: typeMessage,
     content: messageToDisplay,

@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode } from "react";
 import React, {useEffect} from 'react';
 import { Form, Input, Button, Col, message, Row } from 'antd';
-import type { FormItemProps } from 'antd';
+import type { FormItemProps, MessageArgsProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
 import Logo from "../../assets/uc.png";
 import Image from "next/image";
@@ -40,7 +40,7 @@ const MyFormItem = ({ name, ...props }: FormItemProps) => {
   return <Form.Item name={concatName} {...props} />;
 };
 
-function displayMessage(messageToDisplay :string, typeMessage: string) {
+function displayMessage(messageToDisplay :string, typeMessage: MessageArgsProps) {
   message.open({
     type: typeMessage,
     content: messageToDisplay,

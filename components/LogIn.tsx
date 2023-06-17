@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode } from "react";
 import React, {useEffect} from 'react';
 import { Form, Input, Button, Col, message, Row } from 'antd';
-import type { FormItemProps } from 'antd';
+import type { FormItemProps, MessageArgsProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
@@ -17,7 +17,7 @@ interface LoginProps {
 
 const MyFormItemContext = React.createContext<(string | number)[]>([]);
 
-function displayMessage(messageToDisplay :string, typeMessage: string) {
+function displayMessage(messageToDisplay :string, typeMessage: MessageArgsProps) {
   message.open({
     type: typeMessage,
     content: messageToDisplay,
@@ -53,12 +53,13 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
   const router = useRouter()
   const dispatch = useAppDispatch();
   const token = useAppSelector((state => state.userReducer.value.token))
+  const email = useAppSelector((state => state.userReducer.value.email))
 
   useEffect(() => {
     //TODO: diferenciar entre validados y no validados
     if (token.length > 1) {
       router.push('/main')
-    } else {
+    } else if (email.length > 1) {
       router.push('/session/code')
     }
   }, [token, router])
