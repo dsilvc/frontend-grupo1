@@ -58,8 +58,6 @@ const Code: FunctionComponent<LoginProps> = ({ children }) => {
   useEffect(() => {
     if (token.length > 1) {
       router.push('/main')
-    } else {
-      router.push('/session/code')
     }
   }, [token, router])
   const onFinish = (value: object) => {
@@ -75,8 +73,8 @@ const Code: FunctionComponent<LoginProps> = ({ children }) => {
       }).then((response) => {
         dispatch(setToken(response.data.message.Token))
       }).catch((error) => {
-        if ( error.response?.data.message == 'Wrong credentials'){
-          displayMessage('Creedenciales incorrectas', 'error')
+        if ( error.response?.data.message == 'Wrong code'){
+          displayMessage('código incorrecto', 'error')
         } else {
           displayMessage('falta información para el registro', 'error')
         }

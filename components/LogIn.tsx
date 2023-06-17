@@ -56,21 +56,22 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
 
   useEffect(() => {
     //TODO: diferenciar entre validados y no validados
-    if (token.length > 0){
-      router.push('/session/code') 
+    if (token.length > 1) {
+      router.push('/main')
+    } else {
+      router.push('/session/code')
     }
   }, [token, router])
 
   const onFinish = (value: object) => {
-
-    const data =  {...value.user.credentials}
+    const data =  value.credentials
     if (!data.email.endsWith('@uc.cl')){
       displayMessage(
         'El correo no coincide con el formato permitido',
         'error'
       )
     }
-    const url = `${process.env.serverUrl}/users/sign-up/`
+    const url = `${process.env.serverUrl}/users/log-in/`
     axios({
       method: 'post',
       url: url,
@@ -85,15 +86,11 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
           dispatch(setToken(response.data.message.Token))
         }
       }).catch((error) => {
-        const content :string = error.response?.data.message.includes('password') ? 
-          'La contraseña debe tener al menos 6 caracteres' :
-          error.response?.data.message.includes('username') ? 
-          'El nombre de usuario ya ha sido utilizado'
-        : 'Faltan datos para poder realizar un registro exitoso'
-        displayMessage(
-          content,
-          'error'
-        )
+        if ( error.response?.data.message == 'Wrong credentials'){
+          displayMessage('Creedenciales incorrectas', 'error')
+        } else {
+          displayMessage('falta información para el registro', 'error')
+        }
       })};
 
   return (
@@ -108,15 +105,14 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         <br></br>
         <div className="login-form">
           <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
-            <MyFormItemGroup prefix={['user']}>
+        
               <MyFormItemGroup prefix={['credentials']}>
-                <MyFormItem name="mail" label="Correo UC">
+                <MyFormItem name="email" label="Correo UC">
                   <Input />
                 </MyFormItem>
                 <MyFormItem name="password" label="Contraseña">
-                  <Input />
+                  <Input type='password' />
                 </MyFormItem>
-              </MyFormItemGroup>
             </MyFormItemGroup>
 
             <Link href="/session/password">
