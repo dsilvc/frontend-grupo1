@@ -100,11 +100,13 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
           'La contraseña debe tener al menos 6 caracteres' :
           error.response?.data.message.includes('username') ? 
           'El nombre de usuario ya ha sido utilizado'
-        : 'Faltan datos para poder realizar un registro exitoso'
+        : error.response?.data.message.includes('attribute') ?
+        'El formato de los atributos no son los correctos':
+        'Faltan datos para poder realizar un registro exitoso'
         displayMessage(
           content,
           'error'
-        )
+        ) 
       })
     }
   };
@@ -124,7 +126,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
             <MyFormItemGroup prefix={['user']}>
               <MyFormItemGroup prefix={['credentials']}>
                 <MyFormItem name="email" label="Correo UC">
-                  <Input/>
+                  <Input type='email'/>
                 </MyFormItem>
                 <MyFormItem name="password" label="Contraseña">
                   <Input type='password'/>

@@ -108,7 +108,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         
               <MyFormItemGroup prefix={['credentials']}>
                 <MyFormItem name="email" label="Correo UC">
-                  <Input />
+                  <Input type='email'/>
                 </MyFormItem>
                 <MyFormItem name="password" label="Contraseña">
                   <Input type='password' />
