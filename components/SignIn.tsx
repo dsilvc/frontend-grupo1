@@ -1,6 +1,6 @@
-import { FunctionComponent, ReactNode} from "react";
+import { FunctionComponent, ReactNode } from "react";
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Button, Col, Form, Input, message, Row } from 'antd';
 import type { FormItemProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
@@ -8,8 +8,9 @@ import Logo from "../assets/uc.png";
 import Image from "next/image";
 import Link from 'next/link';
 import axios from 'axios';
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setUser } from "@/redux/features/userSlice";
 
-axios.defaults.withCredentials = true;
 interface LoginProps {
   children: ReactNode;
 }
@@ -59,6 +60,16 @@ type User = {
 
 const Login: FunctionComponent<LoginProps> = ({ children }) => {
   const router = useRouter()
+  const dispatch = useAppDispatch();
+  const isSubmitted = useAppSelector((state => state.userReducer.value.isSubmitted))
+  const state = useState(useAppSelector((state => state.userReducer)))
+
+  useEffect(() => {
+    if (isSubmitted){
+      router.push('/session/code') 
+    }
+  }, [isSubmitted, router])
+
   const onFinish = (value: object) => {
       //     * **firsName**: nombre de pila del usuario.
       // * **lastName**: apellido(s) de pila del usuario.
@@ -67,12 +78,12 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
       // * **password**: clave secreta del usuario, minimo 6 caracteres.
     const data : User = {...value.user.credentials, ...value.user.userInformation}
     if (!data.email.endsWith('@uc.cl')){
-      return displayMessage(
+      displayMessage(
         'El correo no coincide con el formato permitido',
         'error'
       )
     }
-    if (value.user.credentials.password === value.user.passwordConfirm){
+    else if (value.user.credentials.password === value.user.passwordConfirm){
       const url = `${process.env.serverUrl}/users/sign-up/`
       axios({
         method: 'post',
@@ -83,20 +94,22 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
           'Content-Type': 'application/json'
         }
       }).then((response) => {
-        router.push('/session/code')
+        data.isSubmitted = true
+        dispatch(setUser(data))
+        
       }).catch((error) => {
         const content :string = error.response?.data.message.includes('password') ? 
           'La contraseña debe tener al menos 6 caracteres' :
           error.response?.data.message.includes('username') ? 
           'El nombre de usuario ya ha sido utilizado'
         : 'Faltan datos para poder realizar un registro exitoso'
-        return displayMessage(
+        displayMessage(
           content,
           'error'
         )
       })
     } else {
-      return displayMessage(
+      displayMessage(
         'Las contraseñas ingresadas no coinciden',
         'error'
       )
