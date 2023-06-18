@@ -13,6 +13,8 @@ import { Providers } from "@/redux/provider";
 
 axios.defaults.withCredentials = true;
 
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+
 const prata = Prata({
   weight: "400",
   variable: "--font-prata",

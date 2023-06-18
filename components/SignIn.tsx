@@ -23,9 +23,9 @@ interface MyFormItemGroupProps {
   children: React.ReactNode;
 }
 
-function displayMessage(messageToDisplay :string, typeMessage: MessageArgsProps ) {
+function displayMessage(messageToDisplay :string) {
   message.open({
-    type: typeMessage,
+    type: 'error',
     content: messageToDisplay,
     className: 'custom-message',
     duration: 3,
@@ -71,13 +71,12 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
     }
   }, [email, router])
 
-  const onFinish = (value: object) => {
+  const onFinish = (value: any) => {
 
     const data : User = {...value.user.credentials, ...value.user.userInformation}
     if (!data.email.endsWith('@uc.cl')){
       displayMessage(
-        'El correo no coincide con el formato permitido',
-        'error'
+        'El correo no coincide con el formato permitido'
       )
     }
     else if (value.user.credentials.password === value.user.passwordConfirm){
@@ -104,8 +103,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         'El formato de los atributos no son los correctos':
         'Faltan datos para poder realizar un registro exitoso'
         displayMessage(
-          content,
-          'error'
+          content
         ) 
       })
     }

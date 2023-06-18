@@ -40,9 +40,9 @@ const MyFormItem = ({ name, ...props }: FormItemProps) => {
   return <Form.Item name={concatName} {...props} />;
 };
 
-function displayMessage(messageToDisplay :string, typeMessage: MessageArgsProps) {
+function displayMessage(messageToDisplay :string) {
   message.open({
-    type: typeMessage,
+    type: 'error',
     content: messageToDisplay,
     className: 'custom-message',
     duration: 3,
@@ -60,7 +60,7 @@ const Code: FunctionComponent<LoginProps> = ({ children }) => {
       router.push('/main')
     }
   }, [token, router])
-  const onFinish = (value: object) => {
+  const onFinish = (value: any) => {
     const url = `${process.env.serverUrl}/users/verification/`
       axios({
         method: 'post',
@@ -74,9 +74,9 @@ const Code: FunctionComponent<LoginProps> = ({ children }) => {
         dispatch(setToken(response.data.message.Token))
       }).catch((error) => {
         if ( error.response?.data.message == 'Wrong code'){
-          displayMessage('código incorrecto', 'error')
+          displayMessage('código incorrecto')
         } else {
-          displayMessage('falta información para el registro', 'error')
+          displayMessage('falta información para el registro')
         }
       })
   };
