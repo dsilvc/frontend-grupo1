@@ -17,9 +17,9 @@ interface LoginProps {
 
 const MyFormItemContext = React.createContext<(string | number)[]>([]);
 
-function displayMessage(messageToDisplay :string, typeMessage: MessageArgsProps) {
+function displayMessage(messageToDisplay :string) {
   message.open({
-    type: typeMessage,
+    type: 'error',
     content: messageToDisplay,
     className: 'custom-message',
     duration: 3,
@@ -64,12 +64,11 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
     }
   }, [token, router])
 
-  const onFinish = (value: object) => {
+  const onFinish = (value: any) => {
     const data =  value.credentials
     if (!data.email.endsWith('@uc.cl')){
       displayMessage(
-        'El correo no coincide con el formato permitido',
-        'error'
+        'El correo no coincide con el formato permitido'
       )
     }
     const url = `${process.env.serverUrl}/users/log-in/`
@@ -88,9 +87,9 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         }
       }).catch((error) => {
         if ( error.response?.data.message == 'Wrong credentials'){
-          displayMessage('Creedenciales incorrectas', 'error')
+          displayMessage('Creedenciales incorrectas')
         } else {
-          displayMessage('falta información para el registro', 'error')
+          displayMessage('falta información para el registro')
         }
       })};
 
