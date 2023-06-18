@@ -1,16 +1,12 @@
 import { FunctionComponent, ReactNode } from "react";
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import {Button, Col, Form, Input, message, Row } from 'antd';
+import React from 'react';
+import { Form, Input, Button, Col, Row } from 'antd';
 import type { FormItemProps } from 'antd';
-import type { MessageArgsProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
 import Link from 'next/link';
-import axios from 'axios';
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setUser } from "@/redux/features/userSlice";
+
 
 interface LoginProps {
   children: ReactNode;
@@ -21,15 +17,6 @@ const MyFormItemContext = React.createContext<(string | number)[]>([]);
 interface MyFormItemGroupProps {
   prefix: string | number | (string | number)[];
   children: React.ReactNode;
-}
-
-function displayMessage(messageToDisplay :string, typeMessage: MessageArgsProps ) {
-  message.open({
-    type: typeMessage,
-    content: messageToDisplay,
-    className: 'custom-message',
-    duration: 3,
-  });
 }
 
 function toArr(str: string | number | (string | number)[]): (string | number)[] {
@@ -50,65 +37,10 @@ const MyFormItem = ({ name, ...props }: FormItemProps) => {
   return <Form.Item name={concatName} {...props} />;
 };
 
-type User = {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  username: string;
-  isSubmitted: boolean;
-  token: string;
-};
 
 const Login: FunctionComponent<LoginProps> = ({ children }) => {
-  const router = useRouter()
-  const dispatch = useAppDispatch();
-  const email = useAppSelector((state) => state.userReducer.value.email)
-
-  useEffect(() => {
-    if (email.length > 0){
-      router.push('/session/code') 
-    }
-  }, [email, router])
-
   const onFinish = (value: object) => {
-
-    const data : User = {...value.user.credentials, ...value.user.userInformation}
-    if (!data.email.endsWith('@uc.cl')){
-      displayMessage(
-        'El correo no coincide con el formato permitido',
-        'error'
-      )
-    }
-    else if (value.user.credentials.password === value.user.passwordConfirm){
-      const url = `${process.env.serverUrl}/users/sign-up/`
-      axios({
-        method: 'post',
-        url: url,
-        withCredentials: false,
-        data: data,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then((response) => {
-        data.isSubmitted = true
-        data.token = ''
-        dispatch(setUser(data))
-        
-      }).catch((error) => {
-        const content :string = error.response?.data.message.includes('password') ? 
-          'La contraseña debe tener al menos 6 caracteres' :
-          error.response?.data.message.includes('username') ? 
-          'El nombre de usuario ya ha sido utilizado'
-        : error.response?.data.message.includes('attribute') ?
-        'El formato de los atributos no son los correctos':
-        'Faltan datos para poder realizar un registro exitoso'
-        displayMessage(
-          content,
-          'error'
-        ) 
-      })
-    }
+    console.log(value);
   };
 
   return (
@@ -124,34 +56,25 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         <div className="login-form">
           <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
             <MyFormItemGroup prefix={['user']}>
-              <MyFormItemGroup prefix={['credentials']}>
-                <MyFormItem name="email" label="Correo UC">
-                  <Input type='email'/>
+              <MyFormItemGroup prefix={['name']}>
+                <MyFormItem name="mail" label="Correo UC">
+                  <Input />
                 </MyFormItem>
                 <MyFormItem name="password" label="Contraseña">
-                  <Input type='password'/>
+                  <Input />
                 </MyFormItem>
               </MyFormItemGroup>
 
-              <MyFormItem name="passwordConfirm" label="Repetir Contraseña">
-                <Input type='password'/>
+              <MyFormItem name="password-confirm" label="Repetir Contraseña">
+                <Input />
               </MyFormItem>
-              
-              <MyFormItemGroup prefix={['userInformation']}>
-                <MyFormItem name="firstName" label="Nombre">
-                  <Input />
-                </MyFormItem>
-                <MyFormItem name="lastName" label="Apellido">
-                  <Input />
-                </MyFormItem>
-                <MyFormItem name="username" label="Nombre de usuario">
-                  <Input/>
-                </MyFormItem>
               </MyFormItemGroup>
-            </MyFormItemGroup>
+
+            <Link href="/main">
             <Button type="primary" htmlType="submit" className="login-button" >
               Registrarme
             </Button>
+            </Link>
           </Form>
         </div>
         <br></br>

@@ -1,14 +1,11 @@
 import { FunctionComponent, ReactNode } from "react";
-import React, {useEffect} from 'react';
-import { Form, Input, Button, Col, message, Row } from 'antd';
-import type { FormItemProps, MessageArgsProps } from 'antd';
+import React from 'react';
+import { Form, Input, Button, Col, Row } from 'antd';
+import type { FormItemProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
 import Logo from "../../assets/uc.png";
 import Image from "next/image";
-import axios from 'axios';
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useRouter } from 'next/navigation';
-import  { setToken } from "@/redux/features/userSlice";
+import Link from 'next/link';
 
 
 interface LoginProps {
@@ -16,12 +13,12 @@ interface LoginProps {
 }
 
 const MyFormItemContext = React.createContext<(string | number)[]>([]);
+
 interface MyFormItemGroupProps {
   prefix: string | number | (string | number)[];
   children: React.ReactNode;
 }
 
-//TODO: Pasar las funciones comunes entre todos los componentes a un utils**
 function toArr(str: string | number | (string | number)[]): (string | number)[] {
   return Array.isArray(str) ? str : [str];
 }
@@ -40,45 +37,10 @@ const MyFormItem = ({ name, ...props }: FormItemProps) => {
   return <Form.Item name={concatName} {...props} />;
 };
 
-function displayMessage(messageToDisplay :string, typeMessage: MessageArgsProps) {
-  message.open({
-    type: typeMessage,
-    content: messageToDisplay,
-    className: 'custom-message',
-    duration: 3,
-  });
-}
 
 const Code: FunctionComponent<LoginProps> = ({ children }) => {
-  const email = useAppSelector((state) => state.userReducer.value.email)
-  const token = useAppSelector((state) => state.userReducer.value.token)
-  const router = useRouter()
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (token.length > 1) {
-      router.push('/main')
-    }
-  }, [token, router])
   const onFinish = (value: object) => {
-    const url = `${process.env.serverUrl}/users/verification/`
-      axios({
-        method: 'post',
-        url: url,
-        withCredentials: false,
-        data: {email: email, verificationNumber: value.user.code},
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then((response) => {
-        dispatch(setToken(response.data.message.Token))
-      }).catch((error) => {
-        if ( error.response?.data.message == 'Wrong code'){
-          displayMessage('código incorrecto', 'error')
-        } else {
-          displayMessage('falta información para el registro', 'error')
-        }
-      })
+    console.log(value);
   };
 
   return (
@@ -94,14 +56,17 @@ const Code: FunctionComponent<LoginProps> = ({ children }) => {
         <div className="login-form">
           <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
             <MyFormItemGroup prefix={['user']}>
+              <MyFormItemGroup prefix={['name']}>
                 <MyFormItem name="code" label="Código">
                   <Input />
                 </MyFormItem>
+              </MyFormItemGroup>
             </MyFormItemGroup>
-            
-            <Button type="primary" htmlType="submit" className="login-button">
-              Ingresar código
-            </Button>
+            <Link href="/main">
+              <Button type="primary" htmlType="submit" className="login-button">
+                Ingresar código
+              </Button>
+            </Link>
           </Form>
         </div>
       </Col>
