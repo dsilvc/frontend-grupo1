@@ -75,3 +75,10 @@
   letter-spacing: 0.02em !important;
   z-index: 2;
 }
+
+.custom-message {
+  font-size: 1.2rem !important;
+  font-family: 'Pragati', sans-serif;
+  width: 40rem !important;
+  justify-content: center;
+}
