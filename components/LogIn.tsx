@@ -78,8 +78,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         headers: {
           'Content-Type': 'application/json',
           
-        },
-        crossOrigin: true, 
+        }
       }
      ).then((response) => {
         dispatch(setEmail(data.email))
