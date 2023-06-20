@@ -61,15 +61,12 @@ const Code: FunctionComponent<LoginProps> = ({ children }) => {
     }
   }, [token, router])
   const onFinish = (value: any) => {
-    const url = `${process.env.serverUrl}/users/verification/`
+    const url = `${process.env.serverUrl}/users/verification`
       axios({
         method: 'post',
         url: url,
         withCredentials: false,
         data: {email: email, verificationNumber: value.user.code},
-        headers: {
-          'Content-Type': 'application/json'
-        }
       }).then((response) => {
         dispatch(setToken(response.data.message.Token))
       }).catch((error) => {

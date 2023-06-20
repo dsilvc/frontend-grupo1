@@ -80,15 +80,13 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
       )
     }
     else if (value.user.credentials.password === value.user.passwordConfirm){
-      const url = `${process.env.serverUrl}/users/sign-up/`
-      axios({
-        method: 'post',
-        url: url,
-        withCredentials: false,
-        data: data,
+      const url = `${process.env.serverUrl}/users/sign-up`
+      axios.post(url, data, {
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true
+
       }).then((response) => {
         data.isSubmitted = true
         data.token = ''
