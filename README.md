@@ -2,6 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+update config
 
 - Node versión: 18
 comandos para Docker[TUTORIAL: https://jsramblings.com/dockerizing-a-react-app/]:
