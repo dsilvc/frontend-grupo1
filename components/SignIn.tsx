@@ -85,7 +85,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        withCredentials: true
+        withCredentials: false
 
       }).then((response) => {
         data.isSubmitted = true
