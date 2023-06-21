@@ -5,7 +5,7 @@ dotenv.config();
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    serverUrl: process.env.SERVER_URL,
+    serverUrl: process.env.NEXT_PUBLIC_SERVER_URL,
   },
 }
 
