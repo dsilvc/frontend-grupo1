@@ -5,7 +5,7 @@ dotenv.config();
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    serverUrl: 'https://ia6dtpped3.execute-api.us-east-1.amazonaws.com' ,
+    serverUrl: process.env.NEXT_PUBLIC_SERVER_URL,
   },
 }
 
