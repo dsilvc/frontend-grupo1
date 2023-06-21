@@ -71,16 +71,16 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         'El correo no coincide con el formato permitido'
       )
     }
-    const url = `${process.env.serverUrl}/users/log-in/`
-    axios({
-      method: 'post',
-      url: url,
-      withCredentials: false,
-      data: data,
-      headers: {
-        'Content-Type': 'application/json'
+    const url = `${process.env.serverUrl}/users/log-in`
+    axios.post(
+      url,data, {
+        withCredentials: false,
+        headers: {
+          'Content-Type': 'application/json',
+          
+        }
       }
-    }).then((response) => {
+     ).then((response) => {
         dispatch(setEmail(data.email))
         if (response.data.message.Token) {
           dispatch(setToken(response.data.message.Token))
