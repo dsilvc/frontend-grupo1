@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode } from "react";
 import React, {useEffect} from 'react';
 import { Form, Input, Button, Col, message, Row } from 'antd';
-import type { FormItemProps, MessageArgsProps } from 'antd';
+import type { FormItemProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
@@ -58,7 +58,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
   useEffect(() => {
     //TODO: diferenciar entre validados y no validados
     if (token.length > 1) {
-      router.push('/main')
+      router.push('/user/ExplorarClases')
     } else if (email.length > 1) {
       router.push('/session/code')
     }
