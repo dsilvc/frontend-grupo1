@@ -58,14 +58,14 @@ const NewPassword: FunctionComponent<LoginProps> = ({ children }) => {
             <MyFormItemGroup prefix={['user']}>
               <MyFormItemGroup prefix={['name']}>
                 <MyFormItem name="password" label="Constraseña">
-                  <Input />
+                  <Input type='password'/>
                 </MyFormItem>
                 <MyFormItem name="password-confirm" label="Repetir Contraseña">
-                    <Input />
+                    <Input type='password'/>
                 </MyFormItem>
               </MyFormItemGroup>
             </MyFormItemGroup>
-            <Button type="primary" htmlType="submit" className="login-button" href="/main">
+            <Button type="primary" htmlType="submit" className="login-button" href="/session">
               Actualizar contraseña
             </Button>
           </Form>
