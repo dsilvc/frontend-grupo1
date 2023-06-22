@@ -84,6 +84,21 @@ export default function Explorar() {
     })
   }
 
+  const postOffer = (serviceId: number) => {
+    const url = `${process.env.serverUrl}/offers`
+    axios.post(url, { service_id: serviceId}, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `x-access-token ${token}`
+      },
+      withCredentials: false,
+    }).then((response) => {
+      message.success('Oferta realizada! El dueño se contactará contigo para concretar')
+    }).catch((error) => {
+      message.error('Hubo un error al realizar la oferta')
+    })
+  }
+
   return (
     <Layout>
       <Row gutter={[16, 16]}>
@@ -112,7 +127,7 @@ export default function Explorar() {
                       </Button>
                     </Col>
                     <Col sm={8}>
-                    <Button type="default">
+                    <Button type="default" onClick={() => postOffer(service.id)}>
                       Contactar
                     </Button>
                     </Col>
