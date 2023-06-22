@@ -100,7 +100,7 @@ export default function Explorar() {
       
       <Row gutter={[16,16]}>
         {
-          services.map((service, key) => {
+          services.map((service: any, key) => {
             return (
               <Col span={6} key={key}>
                 <Card cover={<img alt="example" src="https://www.the74million.org/wp-content/uploads/2023/02/iStock-470493341-copy.jpg" />}>
