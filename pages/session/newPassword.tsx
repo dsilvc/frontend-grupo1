@@ -39,7 +39,7 @@ const MyFormItem = ({ name, ...props }: FormItemProps) => {
 
 const NewPassword: FunctionComponent<LoginProps> = ({ children }) => {
   const onFinish = (value: object) => {
-    console.log(value);
+    return
   };
 
   return (

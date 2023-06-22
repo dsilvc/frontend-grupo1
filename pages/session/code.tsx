@@ -9,44 +9,10 @@ import axios from 'axios';
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useRouter } from 'next/navigation';
 import  { setToken } from "@/redux/features/userSlice";
-
+import { displayMessage, MyFormItemGroup, MyFormItem } from '../../components/utils/utils'
 
 interface LoginProps {
   children: ReactNode;
-}
-
-const MyFormItemContext = React.createContext<(string | number)[]>([]);
-interface MyFormItemGroupProps {
-  prefix: string | number | (string | number)[];
-  children: React.ReactNode;
-}
-
-//TODO: Pasar las funciones comunes entre todos los componentes a un utils**
-function toArr(str: string | number | (string | number)[]): (string | number)[] {
-  return Array.isArray(str) ? str : [str];
-}
-
-const MyFormItemGroup = ({ prefix, children }: MyFormItemGroupProps) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatPath = React.useMemo(() => [...prefixPath, ...toArr(prefix)], [prefixPath, prefix]);
-
-  return <MyFormItemContext.Provider value={concatPath}>{children}</MyFormItemContext.Provider>;
-};
-
-const MyFormItem = ({ name, ...props }: FormItemProps) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatName = name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
-
-  return <Form.Item name={concatName} {...props} />;
-};
-
-function displayMessage(messageToDisplay :string) {
-  message.open({
-    type: 'error',
-    content: messageToDisplay,
-    className: 'custom-message',
-    duration: 3,
-  });
 }
 
 const Code: FunctionComponent<LoginProps> = ({ children }) => {
@@ -60,7 +26,7 @@ const Code: FunctionComponent<LoginProps> = ({ children }) => {
       router.push('/user/ExplorarClases')
     }
   }, [token, router])
-  
+
   const onFinish = (value: any) => {
     const url = `${process.env.serverUrl}/users/verification`
       axios({
