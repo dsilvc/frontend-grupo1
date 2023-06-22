@@ -5,6 +5,7 @@ import type { FormItemProps } from 'antd';
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useRouter } from 'next/navigation';
 
 interface LoginProps {
   children: ReactNode;
@@ -42,8 +43,12 @@ export default function Explorar() {
   const [createMode, setCreateMode] = useState(false);
   const [isClass, setIsClass] = useState(false);
   const token = useAppSelector((state) => state.userReducer.value.token)
+  const router = useRouter()
 
   useEffect(() => {
+    if (token.length == 0){
+      router.push('/session')
+    }
     getServices();
   }, []);
 
