@@ -57,9 +57,10 @@ const Code: FunctionComponent<LoginProps> = ({ children }) => {
 
   useEffect(() => {
     if (token.length > 1) {
-      router.push('/main')
+      router.push('/user/ExplorarClases')
     }
   }, [token, router])
+  
   const onFinish = (value: any) => {
     const url = `${process.env.serverUrl}/users/verification`
       axios({
