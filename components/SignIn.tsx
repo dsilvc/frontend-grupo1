@@ -11,44 +11,11 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setUser } from "@/redux/features/userSlice";
+import { displayMessage, MyFormItemGroup, MyFormItem } from './utils/utils'
 
 interface LoginProps {
   children: ReactNode;
 }
-
-const MyFormItemContext = React.createContext<(string | number)[]>([]);
-
-interface MyFormItemGroupProps {
-  prefix: string | number | (string | number)[];
-  children: React.ReactNode;
-}
-
-function displayMessage(messageToDisplay :string) {
-  message.open({
-    type: 'error',
-    content: messageToDisplay,
-    className: 'custom-message',
-    duration: 3,
-  });
-}
-
-function toArr(str: string | number | (string | number)[]): (string | number)[] {
-  return Array.isArray(str) ? str : [str];
-}
-
-const MyFormItemGroup = ({ prefix, children }: MyFormItemGroupProps) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatPath = React.useMemo(() => [...prefixPath, ...toArr(prefix)], [prefixPath, prefix]);
-
-  return <MyFormItemContext.Provider value={concatPath}>{children}</MyFormItemContext.Provider>;
-};
-
-const MyFormItem = ({ name, ...props }: FormItemProps) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatName = name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
-
-  return <Form.Item name={concatName} {...props} />;
-};
 
 type User = {
   email: string;
@@ -85,7 +52,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        withCredentials: true
+        withCredentials: false
 
       }).then((response) => {
         data.isSubmitted = true
@@ -97,8 +64,10 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
           'La contraseña debe tener al menos 6 caracteres' :
           error.response?.data.message.includes('username') ? 
           'El nombre de usuario ya ha sido utilizado'
-        : error.response?.data.message.includes('attribute') ?
-        'El formato de los atributos no son los correctos':
+        : error.response?.data.message.includes('Validation') ?
+        'El formato de los atributos no son los correctos': 
+        error.response?.data.message.includes('mail') ?
+        'El correo ya ha sido utilizado':
         'Faltan datos para poder realizar un registro exitoso'
         displayMessage(
           content
