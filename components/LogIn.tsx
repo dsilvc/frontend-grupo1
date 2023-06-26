@@ -25,7 +25,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
   useEffect(() => {
     //TODO: diferenciar entre validados y no validados
     if (token.length > 1) {
-      router.push('/user/ExplorarClases')
+      router.push('/main/ExplorarClases')
     } else if (email.length > 1) {
       router.push('/session/code')
     }
