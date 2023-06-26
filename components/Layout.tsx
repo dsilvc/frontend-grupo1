@@ -21,11 +21,8 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
           </Link>
         </div>
         <div className="flex space-x-8 text-white">
-          <Link href="#" className="font-prata text-1xl">
+          <Link href="/user/profile" className="font-prata text-1xl">
             Mi Perfil
-          </Link>
-          <Link href="#" className="font-prata text-1xl">
-            Mis Métricas
           </Link>
           <Link href="#" className="font-prata text-1xl">
             Salir

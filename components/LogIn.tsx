@@ -39,6 +39,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
       )
     }
     const url = `${process.env.serverUrl}/users/log-in`
+    console.log(url);
     axios.post(
       url,data, {
         withCredentials: false,
