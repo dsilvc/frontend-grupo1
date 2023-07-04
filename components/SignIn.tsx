@@ -1,9 +1,7 @@
 import { FunctionComponent, ReactNode } from "react";
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import {Button, Col, Form, Input, message, Row } from 'antd';
-import type { FormItemProps } from 'antd';
-import type { MessageArgsProps } from 'antd';
 import LogInBackground from "@/components/LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
