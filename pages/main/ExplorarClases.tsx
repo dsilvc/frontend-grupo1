@@ -68,7 +68,7 @@ export default function Explorar() {
           },
           withCredentials: false,
         }).then((response) => {
-          setServices(response.data)
+          setServices(response.data.data)
         }).catch((error) => {
           message.error('Hubo un error al cargar los servicios disponibles')
         })

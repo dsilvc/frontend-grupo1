@@ -28,8 +28,8 @@ const NewPassword: FunctionComponent<LoginProps> = ({ children }) => {
       password: value.password.password,
       verificationNumber: value.code
     }
-    const url = `${process.env.serverUrl}/users/password`
-    axios.post(url, data, {
+    const url = `${process.env.serverUrl}/users/change-password`
+    axios.put(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -37,7 +37,7 @@ const NewPassword: FunctionComponent<LoginProps> = ({ children }) => {
 
     }).then((response) => {
       message.success('Contraseña actualizada')
-      router.push('/session/login')
+      router.push('/session')
     }).catch((error) => {
       if (error.message.includes('6')){
         displayMessage('La contraseña entregada no cumple con los formatos')

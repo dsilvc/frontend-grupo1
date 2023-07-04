@@ -25,7 +25,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
   useEffect(() => {
     //TODO: diferenciar entre validados y no validados
     if (token.length > 1) {
-      router.push('/main/ExplorarClases')
+      router.push('/user/profile')
     } else if (email.length > 1) {
       router.push('/session/code')
     }
@@ -39,7 +39,6 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
       )
     }
     const url = `${process.env.serverUrl}/users/log-in`
-    console.log(url);
     axios.post(
       url,data, {
         withCredentials: false,
