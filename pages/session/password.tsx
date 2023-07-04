@@ -44,7 +44,7 @@ const Password: FunctionComponent<LoginProps> = ({ children }) => {
       <Col sm={13} className="login-col">
         <h1 className="form-title">Restauración de contraseña</h1>
         <br></br>
-        <p className="login-form">A continuación te eviaremos un correo electrónico con los pasos a seguir para restaurar la contraseña, 
+        <p className="login-form">A continuación, te enviaremos un correo con los pasos a seguir para restaurar la contraseña, 
             por favor ingresa tu correo electrónico</p>
         <br></br>
         <div className="login-form">
