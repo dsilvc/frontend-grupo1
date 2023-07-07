@@ -2,13 +2,13 @@ import { FunctionComponent, ReactNode } from "react";
 import { useRouter } from 'next/navigation';
 import React, { useEffect} from 'react';
 import {Button, Col, Form, Input, message, Row } from 'antd';
-import LogInBackground from "@/components/LogInBackground";
+import LogInBackground from "./LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
 import Link from 'next/link';
 import axios from 'axios';
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setUser } from "@/redux/features/userSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setUser } from "../redux/features/userSlice";
 import { displayMessage, MyFormItemGroup, MyFormItem } from './utils/utils'
 
 interface LoginProps {
@@ -26,7 +26,7 @@ type User = {
 };
 
 const Login: FunctionComponent<LoginProps> = ({ children }) => {
-  const router = useRouter()
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const email = useAppSelector((state) => state.userReducer.value.email)
 

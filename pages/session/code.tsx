@@ -2,13 +2,13 @@ import { FunctionComponent, ReactNode } from "react";
 import React, {useEffect} from 'react';
 import { Form, Input, Button, Col, message, Row } from 'antd';
 import type { FormItemProps, MessageArgsProps } from 'antd';
-import LogInBackground from "@/components/LogInBackground";
+import LogInBackground from "../../components/LogInBackground";
 import Logo from "../../assets/uc.png";
 import Image from "next/image";
 import axios from 'axios';
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useRouter } from 'next/navigation';
-import  { setToken } from "@/redux/features/userSlice";
+import  { setToken } from "../../redux/features/userSlice";
 import { displayMessage, MyFormItemGroup, MyFormItem } from '../../components/utils/utils'
 
 interface LoginProps {

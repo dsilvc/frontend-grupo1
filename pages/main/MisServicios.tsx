@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 import { Table } from 'antd';
 import { Rate } from 'antd';
 import { Space } from 'antd';
@@ -8,7 +8,6 @@ import { Button, Popover } from 'antd';
 
 
 const rate: React.FC = () => <Rate allowHalf defaultValue={2.5} />;
-
 
 
 const columnsMisServicios = [

@@ -1,14 +1,13 @@
 import { FunctionComponent, ReactNode } from "react";
 import React, {useEffect} from 'react';
 import { Form, Input, Button, Col, Row } from 'antd';
-import type { FormItemProps } from 'antd';
-import LogInBackground from "@/components/LogInBackground";
+import LogInBackground from "./LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
 import Link from 'next/link';
 import axios from 'axios';
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setEmail, setToken } from "@/redux/features/userSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setEmail, setToken } from "../redux/features/userSlice";
 import { useRouter } from 'next/navigation';
 import { displayMessage, MyFormItemGroup, MyFormItem } from './utils/utils'
 

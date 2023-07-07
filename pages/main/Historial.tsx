@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 import { Table } from 'antd';
 
 const columnsMisServicios = [
