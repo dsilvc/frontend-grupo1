@@ -30,7 +30,7 @@ const LandingPage: FunctionComponent<LandingPageProps> = ({ children }) => {
           </Row>
           <Row className="buttons-layout">
               <Col sm={4} className="button-container">
-                <Link href="/main/info">
+                <Link href="/info">
                   <Button className="left-button">
                       Saber más
                   </Button>

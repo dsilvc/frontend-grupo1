@@ -1,0 +1,45 @@
+.photo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-form{
+    font-size: 2.0rem !important;
+    font-weight: bold;
+    letter-spacing: 0.02em !important;
+    z-index: 2;
+}
+
+.profile-label{
+    font-size: 1.5rem !important;
+    font-weight: bold;
+    letter-spacing: 0.02em !important;
+    z-index: 2;
+}
+
+.edit-info{
+    display: flex;
+    flex-direction: column;
+    padding-left: 2%;
+}
+
+.hrefs{
+    font-size: 1rem !important;
+    font-weight: bold;
+    letter-spacing: 0.02em !important;
+    z-index: 2;
+    color: rgba(38, 109, 216, 0.967);
+}
+
+.profile-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

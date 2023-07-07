@@ -2,7 +2,7 @@ import { FunctionComponent, ReactNode } from "react";
 import React from 'react';
 import { Form, Input, Button, Col, Row } from 'antd';
 import type { FormItemProps } from 'antd';
-import LogInBackground from "@/components/LogInBackground";
+import LogInBackground from "../../components/LogInBackground";
 import Logo from "../../assets/uc.png";
 import Image from "next/image";
 

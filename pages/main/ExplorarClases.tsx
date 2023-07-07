@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { FunctionComponent, ReactNode } from "react";
-import { Button, Card, Col, Form,  Input, message, Modal, Row, Switch, Typography } from 'antd';
+import { Button, Card, Col, Form,  Input, message, Modal, Row, Radio, Switch, Typography } from 'antd';
 import type { FormItemProps } from 'antd';
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
@@ -156,22 +156,17 @@ export default function Explorar() {
            <Form name="form_item_path" layout="vertical" onFinish={publishService}>
               
               <MyFormItemGroup prefix={['service']}>
-    
                 <MyFormItem name="type" label="Tipo de oferta">
-                  <Row>
-                    <Col sm={3}>
-                      <Switch onChange={() => setIsClass(!isClass)}/> 
-                    </Col>
-                    <Col sm={12}>
-                    {isClass ? <p>quiero ofrecer una clase</p>: <p>quiero tomar una clase</p>}
-                    </Col>
-                  </Row>
+                  <Radio.Group>
+                    <Radio value="a">Quiero ofrecer una clase</Radio>
+                    <Radio value="b">Quiero tomar una clase</Radio>
+                  </Radio.Group>
                 </MyFormItem>
                 <MyFormItem name="class_id" label="Clase">
                   <Input type='text'/>
                 </MyFormItem>
-                <MyFormItem name="price" label="Monto">
-                  <Input type='number'/>
+                <MyFormItem name="price" label="Monto (CLP)">
+                  <Input type='number' min="0" step="any"/>
                 </MyFormItem>
             </MyFormItemGroup>
 
