@@ -41,6 +41,9 @@ const NewPassword: FunctionComponent<LoginProps> = ({ children }) => {
     }).catch((error) => {
       if (error.message.includes('6')){
         displayMessage('La contraseña entregada no cumple con los formatos')
+      }
+      if ( error.response?.data.message == 'Wrong code'){
+        displayMessage('código incorrecto')
       } else {
         displayMessage('Hay datos enviados con errores')
       }

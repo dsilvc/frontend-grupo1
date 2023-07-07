@@ -26,7 +26,7 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
     if (token.length > 1) {
       router.push('/user/profile')
     } else if (email.length > 1) {
-      router.push('/session/code')
+      router.push('/session')
     }
   }, [token, router])
 
