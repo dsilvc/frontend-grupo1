@@ -59,15 +59,16 @@ export default function Explorar() {
   }, [createMode]);
 
   const getServices = () => {
+    console.log(token)
     const url = `${process.env.serverUrl}/services`
         axios.get(url, {
           headers: {
+            'x-access-token' : token,
             'Content-Type': 'application/json',
-            'Authorization' : `x-access-token ${token}`
           },
           withCredentials: false,
         }).then((response) => {
-          setServices(response.data)
+          setServices(response.data.data)
         }).catch((error) => {
           message.error('Hubo un error al cargar los servicios disponibles')
         })
