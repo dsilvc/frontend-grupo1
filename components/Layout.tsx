@@ -24,7 +24,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
           <Link href="/user/profile" className="font-prata text-1xl">
             Mi Perfil
           </Link>
-          <Link href="#" className="font-prata text-1xl">
+          <Link href="/" className="font-prata text-1xl">
             Salir
           </Link>
         </div>
