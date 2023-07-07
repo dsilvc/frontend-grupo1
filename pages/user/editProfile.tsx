@@ -1,13 +1,10 @@
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 import { Button, Card, Col, Form,  Input, message, Modal, Row, UploadProps, Upload, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { InboxOutlined } from '@ant-design/icons';
-import axios from "axios";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { MyFormItemGroup, MyFormItem } from '../../components/utils/utils';
 
 const normFile = (e: any) => {
-  console.log('Upload event:', e);
   if (Array.isArray(e)) {
     return e;
   }

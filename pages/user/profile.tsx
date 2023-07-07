@@ -1,12 +1,10 @@
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 import { Button, Card, Col, Form,  Input, message, Modal, Row, Radio, Switch, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import photo from "../../assets/profile-placeholder.png";
 import Link from 'next/link';
-import { MyFormItemGroup, MyFormItem } from '../../components/utils/utils';
 
 export default function Home() {
   return (
