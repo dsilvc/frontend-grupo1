@@ -318,12 +318,12 @@ export default function Explorar() {
                   </Select>
               
                 </MyFormItem>
-                <MyFormItem name="lowerPrice" label="Monto menor a..(CLP)">
-                  <Input type='number' min="0" step="any" defaultValue={filteredValues.lowerPrice} onChange={(event) => setLowerPrice(event.target.value)} />
+                {/* <MyFormItem name="lowerPrice" label="Monto menor a..(CLP)">
+                  <Input type='number' min="0" step="any" defaultValue={filteredValues.lowerPrice} onChange={(event) => setLowerPrice(Number(event.target.value))} />
                 </MyFormItem>
                 <MyFormItem name="upperPrice" label="Monto mayor a..(CLP)">
                   <Input type='number' min={lowerPrice} defaultValue={filteredValues.upperPrice} step="any"/>
-                </MyFormItem>
+                </MyFormItem> */}
             </MyFormItemGroup>
 
           <Button type="primary" htmlType="submit" className="login-button" >
