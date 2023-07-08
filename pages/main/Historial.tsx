@@ -64,11 +64,11 @@ export default function Historial() {
         <h1 className="font-work-sans text-5xl text-[#001529] font-bold">Historial</h1>
       </div>
       <div className="flex-1">
-        <h2 className="font-work-sans text-2xl text-[#001529] font-bold">Mis servicios</h2>
+        <h2 className="font-work-sans text-2xl text-[#001529] font-bold">Mis ofertas</h2>
         <Table dataSource={dataSourceMisServicios} columns={columnsMisServicios} />
       </div>
       <div className="flex-1">
-        <h2 className="font-work-sans text-2xl text-[#001529] font-bold">Servicios Contratados</h2>
+        <h2 className="font-work-sans text-2xl text-[#001529] font-bold">Ofertas realizadas</h2>
         <Table dataSource={dataSourceMisServicios} columns={columnsMisServicios} />
       </div>
     </Layout>

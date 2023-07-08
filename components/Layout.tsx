@@ -38,12 +38,12 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
           </div>
           <div className="mt-[38px] w-full flex-col space-y-[21px] px-7">
             <Link href="/main/MisServicios" className="font-work-sans text-xl text-[#213144]">
-              Mis Servicios
+              Mis Ofertas
             </Link>
           </div>
           <div className="mt-[38px] w-full flex-col space-y-[21px] px-7">
-            <Link href="/main/ExplorarClases" className="font-work-sans text-xl text-[#213144]">
-              Servicios Contratados
+            <Link href="/main/OfertasContactatdas" className="font-work-sans text-xl text-[#213144]">
+              Ofertas Contactadas
             </Link>
           </div>
           <div className="mt-[38px] w-full flex-col space-y-[21px] px-7">
