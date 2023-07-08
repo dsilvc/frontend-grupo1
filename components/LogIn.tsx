@@ -1,53 +1,19 @@
 import { FunctionComponent, ReactNode } from "react";
 import React, {useEffect} from 'react';
-import { Form, Input, Button, Col, message, Row } from 'antd';
-import type { FormItemProps, MessageArgsProps } from 'antd';
-import LogInBackground from "@/components/LogInBackground";
+import { Form, Input, Button, Col, Row } from 'antd';
+import LogInBackground from "./LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
 import Link from 'next/link';
 import axios from 'axios';
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setEmail, setToken } from "@/redux/features/userSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setEmail, setToken } from "../redux/features/userSlice";
 import { useRouter } from 'next/navigation';
+import { displayMessage, MyFormItemGroup, MyFormItem } from './utils/utils'
 
 interface LoginProps {
   children: ReactNode;
 }
-
-const MyFormItemContext = React.createContext<(string | number)[]>([]);
-
-function displayMessage(messageToDisplay :string) {
-  message.open({
-    type: 'error',
-    content: messageToDisplay,
-    className: 'custom-message',
-    duration: 3,
-  });
-}
-interface MyFormItemGroupProps {
-  prefix: string | number | (string | number)[];
-  children: React.ReactNode;
-}
-
-function toArr(str: string | number | (string | number)[]): (string | number)[] {
-  return Array.isArray(str) ? str : [str];
-}
-
-const MyFormItemGroup = ({ prefix, children }: MyFormItemGroupProps) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatPath = React.useMemo(() => [...prefixPath, ...toArr(prefix)], [prefixPath, prefix]);
-
-  return <MyFormItemContext.Provider value={concatPath}>{children}</MyFormItemContext.Provider>;
-};
-
-const MyFormItem = ({ name, ...props }: FormItemProps) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatName = name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
-
-  return <Form.Item name={concatName} {...props} />;
-};
-
 
 const Login: FunctionComponent<LoginProps> = ({ children }) => {
   const router = useRouter()
@@ -58,9 +24,9 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
   useEffect(() => {
     //TODO: diferenciar entre validados y no validados
     if (token.length > 1) {
-      router.push('/main')
+      router.push('/user/profile')
     } else if (email.length > 1) {
-      router.push('/session/code')
+      router.push('/session')
     }
   }, [token, router])
 

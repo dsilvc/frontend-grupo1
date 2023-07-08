@@ -1,45 +1,52 @@
 import { FunctionComponent, ReactNode } from "react";
 import React from 'react';
-import { Form, Input, Button, Col, Row } from 'antd';
-import type { FormItemProps } from 'antd';
-import LogInBackground from "@/components/LogInBackground";
+import { Form, Input, Button, Col, Row, message } from 'antd';
+import LogInBackground from "../../components/LogInBackground";
 import Logo from "../../assets/uc.png";
 import Image from "next/image";
-
-
+import axios from 'axios';
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useRouter } from 'next/navigation';
+import { displayMessage, MyFormItemGroup, MyFormItem } from '../../components/utils/utils';
 interface LoginProps {
   children: ReactNode;
 }
 
-const MyFormItemContext = React.createContext<(string | number)[]>([]);
-
-interface MyFormItemGroupProps {
-  prefix: string | number | (string | number)[];
-  children: React.ReactNode;
-}
-
-function toArr(str: string | number | (string | number)[]): (string | number)[] {
-  return Array.isArray(str) ? str : [str];
-}
-
-const MyFormItemGroup = ({ prefix, children }: MyFormItemGroupProps) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatPath = React.useMemo(() => [...prefixPath, ...toArr(prefix)], [prefixPath, prefix]);
-
-  return <MyFormItemContext.Provider value={concatPath}>{children}</MyFormItemContext.Provider>;
-};
-
-const MyFormItem = ({ name, ...props }: FormItemProps) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatName = name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
-
-  return <Form.Item name={concatName} {...props} />;
-};
-
-
 const NewPassword: FunctionComponent<LoginProps> = ({ children }) => {
-  const onFinish = (value: object) => {
-    console.log(value);
+  const router = useRouter()
+  const dispatch = useAppDispatch();
+  const email = useAppSelector((state => state.userReducer.value.email))
+
+  const onFinish = (value: any) => {
+    if (value.password.password !==  value.password.passwordConfirmation){
+      return displayMessage('Las contraseñas no coinciden')
+    }
+    const data = {
+      email: email,
+      password: value.password.password,
+      verificationNumber: value.code
+    }
+    const url = `${process.env.serverUrl}/users/change-password`
+    axios.put(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: false
+
+    }).then((response) => {
+      message.success('Contraseña actualizada')
+      router.push('/session')
+    }).catch((error) => {
+      if (error.message.includes('6')){
+        displayMessage('La contraseña entregada no cumple con los formatos')
+      }
+      if ( error.response?.data.message == 'Wrong code'){
+        displayMessage('código incorrecto')
+      } else {
+        displayMessage('Hay datos enviados con errores')
+      }
+    })
+    return
   };
 
   return (
@@ -55,17 +62,19 @@ const NewPassword: FunctionComponent<LoginProps> = ({ children }) => {
         <br></br>
         <div className="login-form">
           <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
-            <MyFormItemGroup prefix={['user']}>
-              <MyFormItemGroup prefix={['name']}>
+              <MyFormItem name="code" label="Código">
+                <Input type='number'/>
+              </MyFormItem>
+              <MyFormItemGroup prefix={['password']}>
                 <MyFormItem name="password" label="Constraseña">
-                  <Input />
+                  <Input type='password'/>
                 </MyFormItem>
-                <MyFormItem name="password-confirm" label="Repetir Contraseña">
-                    <Input />
+                <MyFormItem name="passwordConfirmation" label="Repetir Contraseña">
+                    <Input type='password'/>
                 </MyFormItem>
               </MyFormItemGroup>
-            </MyFormItemGroup>
-            <Button type="primary" htmlType="submit" className="login-button" href="/main">
+    
+            <Button type="primary" htmlType="submit" className="login-button">
               Actualizar contraseña
             </Button>
           </Form>

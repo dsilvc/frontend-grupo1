@@ -2,44 +2,37 @@ import { FunctionComponent, ReactNode } from "react";
 import React from 'react';
 import { Form, Input, Button, Col, Row } from 'antd';
 import type { FormItemProps } from 'antd';
-import LogInBackground from "@/components/LogInBackground";
+import LogInBackground from "../../components/LogInBackground";
 import Logo from "../../assets/uc.png";
 import Image from "next/image";
-
+import axios from 'axios';
+import { useAppDispatch } from "../../redux/hooks";
+import { setEmail} from "../../redux/features/userSlice";
+import { useRouter } from 'next/navigation';
+import { displayMessage, MyFormItem } from '../../components/utils/utils';
 
 interface LoginProps {
   children: ReactNode;
 }
 
-const MyFormItemContext = React.createContext<(string | number)[]>([]);
-
-interface MyFormItemGroupProps {
-  prefix: string | number | (string | number)[];
-  children: React.ReactNode;
-}
-
-function toArr(str: string | number | (string | number)[]): (string | number)[] {
-  return Array.isArray(str) ? str : [str];
-}
-
-const MyFormItemGroup = ({ prefix, children }: MyFormItemGroupProps) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatPath = React.useMemo(() => [...prefixPath, ...toArr(prefix)], [prefixPath, prefix]);
-
-  return <MyFormItemContext.Provider value={concatPath}>{children}</MyFormItemContext.Provider>;
-};
-
-const MyFormItem = ({ name, ...props }: FormItemProps) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatName = name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
-
-  return <Form.Item name={concatName} {...props} />;
-};
-
-
 const Password: FunctionComponent<LoginProps> = ({ children }) => {
-  const onFinish = (value: object) => {
-    console.log(value);
+  const router = useRouter()
+  const dispatch = useAppDispatch();
+
+  const onFinish = (value: any) => {
+    const url = `${process.env.serverUrl}/users/forgot-password`;
+    axios.post(url, {email: value.mail }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: false
+
+    }).then((response) => {
+      dispatch(setEmail(value.mail))
+      router.push('/session/newPassword')
+    }).catch((error) => {
+      displayMessage('ingresa un email válido')
+    })
   };
 
   return (
@@ -51,19 +44,15 @@ const Password: FunctionComponent<LoginProps> = ({ children }) => {
       <Col sm={13} className="login-col">
         <h1 className="form-title">Restauración de contraseña</h1>
         <br></br>
-        <p className="login-form">A continuación te eviaremos un correo electrónico con los pasos a seguir para restaurar la contraseña, 
+        <p className="login-form">A continuación, te enviaremos un correo con los pasos a seguir para restaurar la contraseña, 
             por favor ingresa tu correo electrónico</p>
         <br></br>
         <div className="login-form">
           <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
-            <MyFormItemGroup prefix={['user']}>
-              <MyFormItemGroup prefix={['name']}>
-                <MyFormItem name="mail" label="Correo electrónico">
-                  <Input />
-                </MyFormItem>
-              </MyFormItemGroup>
-            </MyFormItemGroup>
-            <Button type="primary" htmlType="submit" className="login-button" href="/session/newPassword">
+              <MyFormItem name="mail" label="Correo electrónico">
+                <Input />
+              </MyFormItem>
+            <Button type="primary" htmlType="submit" className="login-button">
               Recuperar contraseña
             </Button>
           </Form>
