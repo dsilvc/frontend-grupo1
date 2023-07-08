@@ -3,13 +3,12 @@ import { Button, Card, Col, Form,  Input, message, Modal, Row, Radio, Switch, Ty
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import Image from "next/image";
-import photo from "../../assets/profile-placeholder.png";
-import { MyFormItem, displayMessage } from '../../components/utils/utils';
+import { MyFormItem, MyFormItemGroup, displayMessage } from '../../components/utils/utils';
 import { useRouter } from 'next/navigation';
 
 export default function ChangePassword() {
   const email = useAppSelector((state) => state.userReducer.value.email)
+  console.log(email)
   const token = useAppSelector((state) => state.userReducer.value.token)
   const router = useRouter()
   const dispatch = useAppDispatch();
@@ -20,26 +19,29 @@ export default function ChangePassword() {
     }
     const data = {
       email: email,
-      password: value.password,
+      password: value.password.password,
       verificationNumber: value.code
     }
-    // const url = `${process.env.serverUrl}/users/change-password`
-    // axios.put(url, data, {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   withCredentials: false
+    const url = `${process.env.serverUrl}/users/change-password`
+    axios.put(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: false
 
-    // }).then((response) => {
-    //   message.success('Contraseña actualizada')
-    //   router.push('/user/profile')
-    // }).catch((error) => {
-    //   if (error.message.includes('6')){
-    //     displayMessage('La contraseña entregada no cumple con los formatos')
-    //   } else {
-    //     displayMessage('Hay datos enviados con errores')
-    //   }
-    // })
+    }).then((response) => {
+      message.success('Contraseña actualizada')
+      router.push('/session')
+    }).catch((error) => {
+      if (error.message.includes('6')){
+        displayMessage('La contraseña entregada no cumple con los formatos')
+      }
+      if ( error.response?.data.message == 'Wrong code'){
+        displayMessage('código incorrecto')
+      } else {
+        displayMessage('Hay datos enviados con errores')
+      }
+    })
     return
   };
 
@@ -51,12 +53,17 @@ export default function ChangePassword() {
         <br></br>
         <br></br>
           <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
-            <MyFormItem name="password" label="Contraseña">
-              <Input type='password'/>
+            <MyFormItem name="code" label="Código">
+              <Input type='number'/>
             </MyFormItem>
-            <MyFormItem name="passwordConfirmirmation" label="Repetir Contraseña">
-              <Input type='password'/>
-            </MyFormItem>
+            <MyFormItemGroup prefix={['password']}>
+              <MyFormItem name="password" label="Constraseña">
+                <Input type='password'/>
+              </MyFormItem>
+              <MyFormItem name="passwordConfirmation" label="Repetir Contraseña">
+                  <Input type='password'/>
+              </MyFormItem>
+            </MyFormItemGroup>
             <Button type="primary" htmlType="submit" className="login-button">
               Actualizar contraseña
             </Button>

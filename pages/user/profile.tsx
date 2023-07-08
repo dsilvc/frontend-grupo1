@@ -5,9 +5,8 @@ import { useAppSelector } from "@/redux/hooks";
 import axios from "axios";
 import Image from "next/image";
 import photo from "../../assets/profile-placeholder.png";
-import Link from 'next/link';
-import { MyFormItemGroup, MyFormItem } from '../../components/utils/utils';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from "@/redux/hooks";
 
 export default function Home() {
   const [user, setUser] = useState({
@@ -19,16 +18,15 @@ export default function Home() {
   const [createMode, setCreateMode] = useState(false);
   const [isClass, setIsClass] = useState(false);
   const token = useAppSelector((state) => state.userReducer.value.token)
+  console.log("token:", token)
   const router = useRouter()
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     getProfile()
   }, [])
 
-
-
   const getProfile = () => {
-    console.log(token)
     const url = `${process.env.serverUrl}/users/profile`
         axios.get(url, {
           headers: {
@@ -42,6 +40,15 @@ export default function Home() {
           message.error('Hubo un error al cargar los datos del perfil')
         })
   }
+
+  const onPress = (value: any) => {
+    router.push('/user/confirmation')
+  };
+
+  const onEdit = (value: any) => {
+    router.push('/user/editProfile')
+  };
+  
 
   return (
     <Layout>
@@ -59,9 +66,21 @@ export default function Home() {
           <p>{user.lastName}</p>
           <h3 className="profile-label">Usuario</h3>
           <p>{user.username}</p>
-
-          <Link href="/user/changePassword" className="hrefs">Cambiar contraseña</Link>
-          <Link href="/user/editProfile" className="hrefs">Modificar perfil</Link>
+          <br></br>
+          <br></br>
+          <div className="buttons">
+            <Form name="changePassword" layout="vertical" onFinish={onPress}>
+              <Button type="primary" htmlType="submit" className="form-button">
+                  Cambiar contraseña
+              </Button>
+            </Form>
+            <Form name="editProfile" layout="vertical" onFinish={onEdit}>
+              <Button type="primary" htmlType="submit" className="form-button">
+                  Modificar perfil
+              </Button>
+            </Form>
+          </div>
+          
         </Col>
       </Row>
     </Layout>

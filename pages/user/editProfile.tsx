@@ -3,6 +3,7 @@ import { Button, Card, Col, Form,  Input, message, Modal, Row, UploadProps, Uplo
 import React, { useEffect, useState } from 'react';
 import { InboxOutlined } from '@ant-design/icons';
 import { MyFormItemGroup, MyFormItem } from '../../components/utils/utils';
+import { useAppSelector } from "@/redux/hooks";
 
 const normFile = (e: any) => {
   if (Array.isArray(e)) {
@@ -26,6 +27,7 @@ const props: UploadProps = {
 };
 
 export default function Home() {
+  const token = useAppSelector((state) => state.userReducer.value.token);
   return (
     <Layout>
       <Row className="edit-info">
