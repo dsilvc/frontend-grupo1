@@ -4,7 +4,11 @@ import { Rate } from 'antd';
 import { Space } from 'antd';
 import { Switch } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { Button, Popover } from 'antd';
+import { Button, Popover, message } from 'antd';
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useRouter } from 'next/navigation';
 
 
 const rate: React.FC = () => <Rate allowHalf defaultValue={2.5} />;
@@ -12,14 +16,14 @@ const rate: React.FC = () => <Rate allowHalf defaultValue={2.5} />;
 
 const columnsMisServicios = [
   {
-    title: 'Nombre Servicio',
-    dataIndex: 'Service_title',
-    key: 'Service_title',
-  },
-  {
     title: 'Clase',
     dataIndex: 'class_name',
     key: 'class_name',
+  },
+  {
+    title: 'Tipo',
+    dataIndex: 'type',
+    key: 'type',
   },
   {
     title: 'Precio',
@@ -27,8 +31,8 @@ const columnsMisServicios = [
     key: 'price',
   },
   {
-    title: 'Usuario',
-    dataIndex: 'user',
+    title: 'Usuario que la ofrece',
+    dataIndex: 'username',
     key: 'user',
   },
   {
@@ -111,6 +115,43 @@ const dataSourceMisServicios = [
 ];
 
 export default function MisServicios() {
+  const [offeredServices, setServices] = useState([]);
+  const [classes, setClasses] = useState([]);
+  const [createMode, setCreateMode] = useState(false);
+  const [isClass, setIsClass] = useState(false);
+  const [currentClass, setCurrentClass] = useState(null);
+  const token = useAppSelector((state) => state.userReducer.value.token)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (token.length == 0){
+      router.push('/session')
+    }
+    getServicesbyUser();
+  }, []);
+
+  useEffect(() => {
+    if (!createMode) {
+      getServicesbyUser();
+    } else {
+    }
+  }, [createMode]);
+
+  const getServicesbyUser = () => {
+    const url = `${process.env.serverUrl}/offers/offersbyuser`
+        axios.get(url, {
+          headers: {
+            'x-access-token' : token,
+            'Content-Type': 'application/json',
+          },
+          withCredentials: false,
+        }).then((response) => {
+          setServices(response.data.data)
+          console.log(response.data.data)
+        }).catch((error) => {
+          message.error('Hubo un error al cargar los servicios disponibles')
+        })
+  }
   return (
     <Layout>
       <div className="mb-3">
@@ -120,7 +161,7 @@ export default function MisServicios() {
         <h3 className="font-work-sans text-[#001529]">En esta sección podrás seguir todas las ofertas que te interesaron.</h3>
       </div>
       <div className="flex-1">
-        <Table dataSource={dataSourceMisServicios} columns={columnsMisServicios} />
+        <Table dataSource={offeredServices} columns={columnsMisServicios} />
       </div>
     </Layout>
   );
