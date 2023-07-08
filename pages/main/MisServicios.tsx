@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useRouter } from 'next/navigation';
-import { classicNameResolver } from "typescript";
 
 const rate: React.FC = () => <Rate allowHalf defaultValue={2.5} />;
 
@@ -24,11 +23,6 @@ const columnsMisServicios = [
     title: 'Tipo',
     dataIndex: 'type',
     key: 'type',
-  },
-  {
-    title: 'Disponible',
-    dataIndex: 'available',
-    key: 'available',
   },
   {
     title: 'Realizado',
@@ -56,6 +50,29 @@ const columnsMisServicios = [
           defaultChecked
         />
       </Space>
+    ),
+  },
+  {
+    title: 'Calificación',
+    dataIndex: 'score',
+    key: 'score',
+    sorter: true,
+    render: () => (
+      <Space direction="vertical">
+        <Rate
+        />
+      </Space>
+    ),
+  },
+  {
+    title: 'Reseña',
+    dataIndex: 'comment',
+    key: 'comment',
+    sorter: true,
+    render: (text: string) => (
+      <Popover content={text} title="Reseña">
+        <Button type="primary" style={{ background: "grey" }} >Ver reseña</Button>
+      </Popover >
     ),
   }
 ];
@@ -119,7 +136,7 @@ export default function MisServicios() {
           withCredentials: false,
         }).then((response) => {
           setServices(response.data.data)
-          console.log(response.data.data)
+          console.log(response.data.data.available)
         }).catch((error) => {
           message.error('Hubo un error al cargar los servicios disponibles')
         })

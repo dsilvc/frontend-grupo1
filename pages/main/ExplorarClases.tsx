@@ -182,10 +182,13 @@ export default function Explorar() {
         </Col>
        
       </Row>
+      <br></br>
+      <br></br>
       <Row>
         <a onClick={() => setFilteredMode(!filteredMode)}>Filtrar por categorías</a>
       </Row>
-      
+      <br></br>
+      <br></br>
       <Row gutter={[16,16]}>
         {
           filteredServices.map((service: any, key) => {
@@ -274,13 +277,13 @@ export default function Explorar() {
            <Form name="form_item_path" layout="vertical" onFinish={filterServices}>
               
               <MyFormItemGroup prefix={['service']}>
-                <MyFormItem name="type" label="Tipo de oferta">
+                {/* <MyFormItem name="type" label="Tipo de oferta">
                   <Radio.Group defaultValue={filteredValues.type}>
                     <Radio value="professor">Quiero ofrecer una clase</Radio>
                     <Radio value="student">Quiero tomar una clase</Radio>
                     <Radio value="both">Continuar sin filtro</Radio>
                   </Radio.Group>
-                </MyFormItem>
+                </MyFormItem> */}
                 <MyFormItem name="class_id" label="Clase">
                   <Select
                    allowClear
