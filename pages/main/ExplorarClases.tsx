@@ -1,12 +1,11 @@
 import Layout from "@/components/Layout";
 import { FunctionComponent, ReactNode } from "react";
-import { Button, Card, Col, Form,  Input, message, Modal, Row, Radio, Switch, Typography } from 'antd';
+import { Button, Card, Col, Form,  Input, message, Modal, Row, Radio, Switch, Typography, Select } from 'antd';
 import type { FormItemProps } from 'antd';
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useRouter } from 'next/navigation';
-
 interface LoginProps {
   children: ReactNode;
 }
@@ -40,8 +39,10 @@ const MyFormItem = ({ name, ...props }: FormItemProps) => {
 
 export default function Explorar() {
   const [services, setServices] = useState([]);
+  const [classes, setClasses] = useState([]);
   const [createMode, setCreateMode] = useState(false);
   const [isClass, setIsClass] = useState(false);
+  const [currentClass, setCurrentClass] = useState(null);
   const token = useAppSelector((state) => state.userReducer.value.token)
   const router = useRouter()
 
@@ -50,16 +51,19 @@ export default function Explorar() {
       router.push('/session')
     }
     getServices();
+    getClasses()
   }, []);
 
   useEffect(() => {
     if (!createMode) {
       getServices();
+    } else {
+      getClasses();
     }
   }, [createMode]);
 
   const getServices = () => {
-    const url = `${process.env.serverUrl}/class`
+    const url = `${process.env.serverUrl}/services`
         axios.get(url, {
           headers: {
             'x-access-token' : token,
@@ -70,6 +74,21 @@ export default function Explorar() {
           setServices(response.data.data)
         }).catch((error) => {
           message.error('Hubo un error al cargar los servicios disponibles')
+        })
+  }
+
+  const getClasses = () => {
+    const url = `${process.env.serverUrl}/class`
+        axios.get(url, {
+          headers: {
+            'x-access-token' : token,
+            'Content-Type': 'application/json',
+          },
+          withCredentials: false,
+        }).then((response) => {
+          setClasses(response.data.data)
+        }).catch((error) => {
+          message.error('Hubo un error al cargar las clases disponibles')
         })
   }
 
@@ -128,7 +147,7 @@ export default function Explorar() {
             return (
               <Col span={6} key={key}>
                 <Card cover={<img alt="example" src="https://www.the74million.org/wp-content/uploads/2023/02/iStock-470493341-copy.jpg" />}>
-                <Card.Meta title={service.class_id ? service.class_id : 'Clase'} description={`Usuario: ${service.user_id}`}/>
+                <Card.Meta title={service.class_id ? service.clase.name : 'Clase'} description={`Usuario: ${service.user.firstName + ' ' +service.user.lastName}`}/>
                   <Row gutter={[16, 16]}>
                     <Col sm={12}>
                       <Button type="primary" className="login-button" disabled={true}>
@@ -167,7 +186,23 @@ export default function Explorar() {
                   </Radio.Group>
                 </MyFormItem>
                 <MyFormItem name="class_id" label="Clase">
-                  <Input type='number'/>
+                  <Select
+                   allowClear
+                   style={{ width: "100%" }}
+                   placeholder="Seleccionar clase"
+                   onChange={
+                     (e) => setCurrentClass(e)
+                   }
+                   >
+                      {
+                        classes.map((c: any, key) => { return (
+                          <Select.Option value={c.id} key={c.id}>
+                              {c.initials} - {c.name}
+                          </Select.Option>)}
+                        )
+                      }
+                  </Select>
+              
                 </MyFormItem>
                 <MyFormItem name="price" label="Monto (CLP)">
                   <Input type='number' min="0" step="any"/>
