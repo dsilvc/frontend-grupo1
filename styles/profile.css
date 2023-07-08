@@ -43,3 +43,14 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.form-button{
+    background-color: #1677ff !important;;
+  }
+  
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 60%;
+  }
