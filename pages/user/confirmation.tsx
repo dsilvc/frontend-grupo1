@@ -7,7 +7,7 @@ import { displayMessage } from '../../components/utils/utils';
 import { useRouter } from 'next/navigation';
 import { setEmail} from "@/redux/features/userSlice";
 
-export default function confirmation() {
+export default function Confirmation() {
 
     const router = useRouter()
     const dispatch = useAppDispatch();
