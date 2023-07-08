@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from "react";
-import React, {useEffect} from 'react';
-import { Form, Input, Button, Col, Row } from 'antd';
+import React, { useEffect } from 'react';
+import { Form, Input, Button, Col, Row, message } from 'antd';
 import LogInBackground from "./LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
@@ -21,88 +21,90 @@ const Login: FunctionComponent<LoginProps> = ({ children }) => {
   const token = useAppSelector((state => state.userReducer.value.token))
   const email = useAppSelector((state => state.userReducer.value.email))
 
-  useEffect(() => {
-    //TODO: diferenciar entre validados y no validados
-    if (token.length > 1) {
-      router.push('/user/profile')
-    } else if (email.length > 1) {
-      router.push('/session')
-    }
-  }, [token, router])
+
 
   const onFinish = (value: any) => {
-    const data =  value.credentials
-    if (!data.email.endsWith('@uc.cl')){
+    const data = value.credentials
+    if (!data.email.endsWith('@uc.cl')) {
       displayMessage(
         'El correo no coincide con el formato permitido'
       )
     }
     const url = `${process.env.serverUrl}/users/log-in`
-    axios.post(
-      url,data, {
-        withCredentials: false,
-        headers: {
-          'Content-Type': 'application/json',
-          
-        }
-      }
-     ).then((response) => {
-        dispatch(setEmail(data.email))
+    axios.post(url, data, {
+      withCredentials: false,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        dispatch(setEmail(data.email));
         if (response.data.message.Token) {
-          dispatch(setToken(response.data.message.Token))
+          dispatch(setToken(response.data.message.Token));
+          const isAdmin = response.data.message.isAdmin;
+          console.log(isAdmin)
+
+          if (isAdmin == true) {
+            router.push('/admin/PendientesAprobacion');
+          } else {
+            // Handle redirection for non-admin users, if needed
+            router.push('/user/profile');
+          }
         }
-      }).catch((error) => {
-        if ( error.response?.data.message == 'Wrong credentials'){
+      })
+      .catch((error) => {
+        if (error.response?.data.message == 'Wrong credentials') {
           displayMessage('Creedenciales incorrectas')
         } else {
           displayMessage('falta información para el registro')
         }
-      })};
+      })
+  };
 
   return (
     <>
-    <Row className="login-display">
-      <Col sm={9}>
+      <Row className="login-display">
+        <Col sm={9}>
           <LogInBackground />
-      </Col>
-      <Col sm={13} className="login-col">
-        <h1 className="form-title">¡Bienvenido!</h1>
-        <br></br>
-        <br></br>
-        <div className="login-form">
-          <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
-        
+        </Col>
+        <Col sm={13} className="login-col">
+          <h1 className="form-title">¡Bienvenido!</h1>
+          <br></br>
+          <br></br>
+          <div className="login-form">
+            <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
+
               <MyFormItemGroup prefix={['credentials']}>
                 <MyFormItem name="email" label="Correo UC">
-                  <Input type='email'/>
+                  <Input type='email' />
                 </MyFormItem>
                 <MyFormItem name="password" label="Contraseña">
                   <Input type='password' />
                 </MyFormItem>
-            </MyFormItemGroup>
+              </MyFormItemGroup>
 
-            <Link href="/session/password">
-              <p>¿Olvidaste tu contraseña? Presiona aquí</p>
-            </Link>
-            <br></br>
-            <br></br>
-            
+              <Link href="/session/password">
+                <p>¿Olvidaste tu contraseña? Presiona aquí</p>
+              </Link>
+              <br></br>
+              <br></br>
+
               <Button type="primary" htmlType="submit" className="login-button">
                 Iniciar Sesión
               </Button>
-          </Form>
-        </div>
-        <br></br>
-        <Link href="/session/signin">
-              <p>¿No tienes cuenta? Regístrate aquí</p>
-            </Link>
-      </Col>
-      <Col sm={2} className="logo-pos">
-        <Image src={Logo} alt="Logo UC" className="logo-uc"/>
-      </Col>
-    </Row>
+            </Form>
+          </div>
+          <br></br>
+          <Link href="/session/signin">
+            <p>¿No tienes cuenta? Regístrate aquí</p>
+          </Link>
+        </Col>
+        <Col sm={2} className="logo-pos">
+          <Image src={Logo} alt="Logo UC" className="logo-uc" />
+        </Col>
+      </Row>
     </>
   );
-  }
+}
 
 export default Login;

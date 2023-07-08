@@ -32,11 +32,6 @@ const LayoutAdmin: FunctionComponent<LayoutProps> = ({ children }) => {
               Aprobar Ofertas
             </Link>
           </div>
-          <div className="mt-[38px] w-full flex-col space-y-[21px] px-7">
-            <Link href="OfertasAprobadas" className="font-work-sans text-xl text-[#213144]">
-              Ofertas Aprobadas
-            </Link>
-          </div>
         </div>
         <div className="flex flex-col flex-1 p-5">
           {children}
