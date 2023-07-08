@@ -39,8 +39,18 @@ const MyFormItem = ({ name, ...props }: FormItemProps) => {
 
 export default function Explorar() {
   const [services, setServices] = useState([]);
+  const [filteredServices, setFilteredServices] = useState([]);
   const [classes, setClasses] = useState([]);
   const [createMode, setCreateMode] = useState(false);
+  const [filteredMode, setFilteredMode] = useState(false);
+  const [lowerPrice, setLowerPrice] = useState(0);
+  const [filteredValues, setFilteredValues] = useState({
+    class_id: [],
+    area: [],
+    type: 'both',
+    lowerPrice: 0,
+    upperPrice: 0
+  });
   const [isClass, setIsClass] = useState(false);
   const [currentClass, setCurrentClass] = useState(null);
   const token = useAppSelector((state) => state.userReducer.value.token)
@@ -62,6 +72,39 @@ export default function Explorar() {
     }
   }, [createMode]);
 
+  const filterServices = (value: any) => {
+    let newFilteredServices : any;
+    newFilteredServices = services
+    setFilteredValues(value.service)
+    if (value.service.class_id && value.service.class_id.length > 0){
+      newFilteredServices = filteredServices.filter((obj: any) => 
+        value.service.class_id.includes(obj.class_id)
+      )
+    } 
+    if ( value.service.area && value.service.area.length > 0 ){
+      newFilteredServices = newFilteredServices.filter((obj: any) => 
+        value.service.area.includes(obj.clase.area)
+      )
+    }
+    if ( value.service.type && value.service.type != 'both'  ){
+      newFilteredServices = newFilteredServices.filter((obj: any) => 
+        value.service.type === obj.clase.area
+      )
+    }
+    if (value.service.lowerPrice && value.service.lowerPrice >= 0){
+      newFilteredServices = newFilteredServices.filter((obj: any) => 
+        obj.price > value.service.lowerPrice
+      )
+    }
+    if (value.service.upperPrice && value.service.upperPrice >= 0){
+      newFilteredServices = newFilteredServices.filter((obj: any) => 
+        obj.price <= value.service.upperPrice
+      )
+    }
+    setFilteredServices(newFilteredServices)
+    setFilteredMode(!filteredMode)
+  }
+
   const getServices = () => {
     const url = `${process.env.serverUrl}/services`
         axios.get(url, {
@@ -72,6 +115,7 @@ export default function Explorar() {
           withCredentials: false,
         }).then((response) => {
           setServices(response.data.data)
+          setFilteredServices(response.data.data)
         }).catch((error) => {
           message.error('Hubo un error al cargar los servicios disponibles')
         })
@@ -115,7 +159,7 @@ export default function Explorar() {
     axios.post(url, { service_id: serviceId}, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization' : `x-access-token ${token}`
+        'x-access-token' : token,
       },
       withCredentials: false,
     }).then((response) => {
@@ -128,27 +172,30 @@ export default function Explorar() {
   return (
     <Layout>
       <Row gutter={[16, 16]}>
-        <Col sm={20}>
+        <Col sm={21}>
           <h1 className="font-work-sans text-4xl text-[#001529] font-bold pb-[1rem]" >Explorar clases</h1>
         </Col>
-        <Col sm={4}>
+        <Col sm={3}>
           <Button onClick={() => setCreateMode(!createMode)}>
             Crear una oferta
           </Button>
         </Col>
        
       </Row>
+      <Row>
+        <a onClick={() => setFilteredMode(!filteredMode)}>Filtrar por categorías</a>
+      </Row>
       
       <Row gutter={[16,16]}>
         {
-          services.map((service: any, key) => {
+          filteredServices.map((service: any, key) => {
             return (
-              <Col span={6} key={key}>
+              <Col span={5} key={key}>
                 <Card cover={<img alt="example" src="https://www.the74million.org/wp-content/uploads/2023/02/iStock-470493341-copy.jpg" />}>
-                <Card.Meta title={service.class_id ? service.clase.name : 'Clase'} description={`Usuario: ${service.user.firstName + ' ' +service.user.lastName}`}/>
+                <Card.Meta title={service.class_id ? service.clase.name : 'Clase'} description={`Usuario: ${service.user.firstName + ' ' +service.user.lastName} - ${service.type === 'professor' ? 'Profesor': 'Estudiante'}`}/>
                   <Row gutter={[16, 16]}>
                     <Col sm={12}>
-                      <Button type="primary" className="login-button" disabled={true}>
+                      <Button type="primary" className={service.type == 'professor'? "login-button": "login-button-student"} disabled={true}>
                         ${service.price}
                       </Button>
                     </Col>
@@ -211,6 +258,78 @@ export default function Explorar() {
             Publicar
           </Button>
     </Form>
+
+
+        </Modal>
+      )}
+       {filteredMode && (
+        <Modal
+          centered={true}
+          open={filteredMode}
+          title='Filtrar servicios'
+          footer={null}
+          onCancel={() => setFilteredMode(!filteredMode)}
+          destroyOnClose={true}
+        >
+           <Form name="form_item_path" layout="vertical" onFinish={filterServices}>
+              
+              <MyFormItemGroup prefix={['service']}>
+                <MyFormItem name="type" label="Tipo de oferta">
+                  <Radio.Group defaultValue={filteredValues.type}>
+                    <Radio value="professor">Quiero ofrecer una clase</Radio>
+                    <Radio value="student">Quiero tomar una clase</Radio>
+                    <Radio value="both">Continuar sin filtro</Radio>
+                  </Radio.Group>
+                </MyFormItem>
+                <MyFormItem name="class_id" label="Clase">
+                  <Select
+                   allowClear
+                   defaultValue={filteredValues.class_id}
+                   mode="multiple"
+                   style={{ width: "100%" }}
+                   placeholder="Clases"
+                   >
+                      {
+                        classes.map((c: any, key) => { return (
+                          <Select.Option value={c.id} key={c.id}>
+                              {c.initials} - {c.name}
+                          </Select.Option>)}
+                        )
+                      }
+                  </Select>
+              
+                </MyFormItem>
+
+                <MyFormItem name="area" label="Área">
+                  <Select
+                   allowClear
+                   mode="multiple"
+                   style={{ width: "100%" }}
+                   placeholder="Área"
+                   defaultValue={filteredValues.area}
+                   >
+                      {
+                        classes.map((c: any, key) => { return (
+                          <Select.Option value={c.area} key={c.area}>
+                              {c.area}
+                          </Select.Option>)}
+                        )
+                      }
+                  </Select>
+              
+                </MyFormItem>
+                <MyFormItem name="lowerPrice" label="Monto menor a..(CLP)">
+                  <Input type='number' min="0" step="any" defaultValue={filteredValues.lowerPrice} onChange={(event) => setLowerPrice(event.target.value)} />
+                </MyFormItem>
+                <MyFormItem name="upperPrice" label="Monto mayor a..(CLP)">
+                  <Input type='number' min={lowerPrice} defaultValue={filteredValues.upperPrice} step="any"/>
+                </MyFormItem>
+            </MyFormItemGroup>
+
+          <Button type="primary" htmlType="submit" className="login-button" >
+            Filtrar
+          </Button>
+        </Form>
 
 
         </Modal>

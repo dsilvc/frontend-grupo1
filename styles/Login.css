@@ -55,7 +55,14 @@
 
 .login-button{
   width: 100%;
-  background-color: #1677ff !important;;
+  background-color: #1677ff !important;
+  color:#ffffff
+}
+
+.login-button-student{
+  width: 100%;
+  background-color: #eee728 !important;
+  color:black
 }
 
 .login-col{
