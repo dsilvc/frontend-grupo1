@@ -1,17 +1,17 @@
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 import { FunctionComponent, ReactNode } from "react";
 import { Button, Card, Col, Form,  Input, message, Modal, Row, Radio, Switch, Typography, Select } from 'antd';
 import type { FormItemProps } from 'antd';
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useRouter } from 'next/navigation';
+
 interface LoginProps {
   children: ReactNode;
 }
 
 const MyFormItemContext = React.createContext<(string | number)[]>([]);
-
 
 interface MyFormItemGroupProps {
   prefix: string | number | (string | number)[];
@@ -95,8 +95,6 @@ export default function Explorar() {
   const publishService =  (value: any) => {
     const data = {'class_id': Number(value.service.class_id), 'available': true, 'price': Number(value.service.price), 'type': value.service.type}
     const url = `${process.env.serverUrl}/services`
-    console.log(token)
-    console.log(data)
     
     axios.post(url, data, {
       headers: {
@@ -135,7 +133,7 @@ export default function Explorar() {
         </Col>
         <Col sm={4}>
           <Button onClick={() => setCreateMode(!createMode)}>
-            Crear un servicio
+            Crear una oferta
           </Button>
         </Col>
        

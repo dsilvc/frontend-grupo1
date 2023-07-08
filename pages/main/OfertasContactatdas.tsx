@@ -1,15 +1,21 @@
 import Layout from "../../components/Layout";
-import { Button, Table, Rate, Space, Popover, Switch, message } from 'antd';
+import { Table } from 'antd';
+import { Rate } from 'antd';
+import { Space } from 'antd';
+import { Switch } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import React, { useEffect, useState } from 'react';
-import axios from "axios";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { useRouter } from 'next/navigation';
-import { classicNameResolver } from "typescript";
+import { Button, Popover } from 'antd';
+
 
 const rate: React.FC = () => <Rate allowHalf defaultValue={2.5} />;
 
+
 const columnsMisServicios = [
+  {
+    title: 'Nombre Servicio',
+    dataIndex: 'Service_title',
+    key: 'Service_title',
+  },
   {
     title: 'Clase',
     dataIndex: 'class_name',
@@ -21,14 +27,9 @@ const columnsMisServicios = [
     key: 'price',
   },
   {
-    title: 'Tipo',
-    dataIndex: 'type',
-    key: 'type',
-  },
-  {
-    title: 'Disponible',
-    dataIndex: 'available',
-    key: 'available',
+    title: 'Usuario',
+    dataIndex: 'user',
+    key: 'user',
   },
   {
     title: 'Realizado',
@@ -56,6 +57,29 @@ const columnsMisServicios = [
           defaultChecked
         />
       </Space>
+    ),
+  },
+  {
+    title: 'Calificación',
+    dataIndex: 'score',
+    key: 'score',
+    sorter: true,
+    render: () => (
+      <Space direction="vertical">
+        <Rate
+        />
+      </Space>
+    ),
+  },
+  {
+    title: 'Reseña',
+    dataIndex: 'comment',
+    key: 'comment',
+    sorter: true,
+    render: (text: string) => (
+      <Popover content={text} title="Reseña">
+        <Button type="primary" style={{ background: "grey" }} >Ver reseña</Button>
+      </Popover >
     ),
   }
 ];
@@ -87,55 +111,17 @@ const dataSourceMisServicios = [
 ];
 
 export default function MisServicios() {
-  const [myservices, setServices] = useState([]);
-  const [classes, setClasses] = useState([]);
-  const [createMode, setCreateMode] = useState(false);
-  const [isClass, setIsClass] = useState(false);
-  const [currentClass, setCurrentClass] = useState(null);
-  const token = useAppSelector((state) => state.userReducer.value.token)
-  const router = useRouter()
-
-  useEffect(() => {
-    if (token.length == 0){
-      router.push('/session')
-    }
-    getServicesbyUser();
-  }, []);
-
-  useEffect(() => {
-    if (!createMode) {
-      getServicesbyUser();
-    } else {
-    }
-  }, [createMode]);
-
-  const getServicesbyUser = () => {
-    const url = `${process.env.serverUrl}/services/servicesbyuser`
-        axios.get(url, {
-          headers: {
-            'x-access-token' : token,
-            'Content-Type': 'application/json',
-          },
-          withCredentials: false,
-        }).then((response) => {
-          setServices(response.data.data)
-          console.log(response.data.data)
-        }).catch((error) => {
-          message.error('Hubo un error al cargar los servicios disponibles')
-        })
-  }
-
   return (
     <Layout>
       <div className="mb-3">
-        <h1 className="font-work-sans text-5xl text-[#001529] font-bold">Mis Servicios</h1>
+        <h1 className="font-work-sans text-5xl text-[#001529] font-bold">Ofertas Contactadas</h1>
       </div>
       <div className="mb-10">
-        <h3 className="font-work-sans text-[#001529]">En esta sección podrás administrar la información acerca de los servivios que ofreciste y fueron contratados por un tercero</h3>
+        <h3 className="font-work-sans text-[#001529]">En esta sección podrás seguir todas las ofertas que te interesaron.</h3>
       </div>
       <div className="flex-1">
-        <Table dataSource={myservices} columns={columnsMisServicios} />
+        <Table dataSource={dataSourceMisServicios} columns={columnsMisServicios} />
       </div>
     </Layout>
-  )
+  );
 }
