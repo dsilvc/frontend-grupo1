@@ -12,7 +12,6 @@ export default function Confirmation() {
     const router = useRouter()
     const dispatch = useAppDispatch();
     const email = useAppSelector((state) => state.userReducer.value.email)
-    console.log(email)
 
     const onFinish = (value: any) => {
         const url = `${process.env.serverUrl}/users/forgot-password`;

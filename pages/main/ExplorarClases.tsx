@@ -59,8 +59,7 @@ export default function Explorar() {
   }, [createMode]);
 
   const getServices = () => {
-    console.log(token)
-    const url = `${process.env.serverUrl}/services`
+    const url = `${process.env.serverUrl}/class`
         axios.get(url, {
           headers: {
             'x-access-token' : token,
@@ -75,17 +74,21 @@ export default function Explorar() {
   }
 
   const publishService =  (value: any) => {
-    const data = {...value.service, 'type': isClass ? 'Classes':'', 'user_id': 1, 'available': true}
+    const data = {'class_id': Number(value.service.class_id), 'available': true, 'price': Number(value.service.price), 'type': value.service.type}
     const url = `${process.env.serverUrl}/services`
+    console.log(token)
+    console.log(data)
+    
     axios.post(url, data, {
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization' : `x-access-token ${token}`
+        'x-access-token' : token,
+        'Content-Type': 'application/json'
       },
       withCredentials: false,
     }).then((response) => {
       setCreateMode(!createMode)
     }).catch((error) => {
+      console.log(error)
       message.error('Hubo un error al publicar el nuevo servicio')
     })
   }
@@ -159,12 +162,12 @@ export default function Explorar() {
               <MyFormItemGroup prefix={['service']}>
                 <MyFormItem name="type" label="Tipo de oferta">
                   <Radio.Group>
-                    <Radio value="a">Quiero ofrecer una clase</Radio>
-                    <Radio value="b">Quiero tomar una clase</Radio>
+                    <Radio value="professor">Quiero ofrecer una clase</Radio>
+                    <Radio value="student">Quiero tomar una clase</Radio>
                   </Radio.Group>
                 </MyFormItem>
                 <MyFormItem name="class_id" label="Clase">
-                  <Input type='text'/>
+                  <Input type='number'/>
                 </MyFormItem>
                 <MyFormItem name="price" label="Monto (CLP)">
                   <Input type='number' min="0" step="any"/>
