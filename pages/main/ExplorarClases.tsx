@@ -157,11 +157,11 @@ export default function Explorar() {
   }
 
   const postOffer = (serviceId: number) => {
-    const url = `${process.env.serverUrl}/offer`
+    const url = `${process.env.serverUrl}/offers`
     axios.post(url, { service_id: serviceId}, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization' : `x-access-token ${token}`
+        'x-access-token' : token,
       },
       withCredentials: false,
     }).then((response) => {
