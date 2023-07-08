@@ -75,7 +75,7 @@ export default function Explorar() {
   const filterServices = (value: any) => {
     let newFilteredServices : any;
     newFilteredServices = services
-    setFilteredValues(value)
+    setFilteredValues(value.service)
     if (value.service.class_id && value.service.class_id.length > 0){
       newFilteredServices = filteredServices.filter((obj: any) => 
         value.service.class_id.includes(obj.class_id)
@@ -157,7 +157,7 @@ export default function Explorar() {
   }
 
   const postOffer = (serviceId: number) => {
-    const url = `${process.env.serverUrl}/offers`
+    const url = `${process.env.serverUrl}/offer`
     axios.post(url, { service_id: serviceId}, {
       headers: {
         'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ export default function Explorar() {
                 <Card.Meta title={service.class_id ? service.clase.name : 'Clase'} description={`Usuario: ${service.user.firstName + ' ' +service.user.lastName} - ${service.type === 'professor' ? 'Profesor': 'Estudiante'}`}/>
                   <Row gutter={[16, 16]}>
                     <Col sm={12}>
-                      <Button type="primary" className="login-button" disabled={true}>
+                      <Button type="primary" className={service.type == 'professor'? "login-button": "login-button-student"} disabled={true}>
                         ${service.price}
                       </Button>
                     </Col>
