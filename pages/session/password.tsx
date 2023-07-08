@@ -6,8 +6,8 @@ import LogInBackground from "../../components/LogInBackground";
 import Logo from "../../assets/uc.png";
 import Image from "next/image";
 import axios from 'axios';
-import { useAppDispatch } from "@/redux/hooks";
-import { setEmail} from "@/redux/features/userSlice";
+import { useAppDispatch } from "../../redux/hooks";
+import { setEmail} from "../../redux/features/userSlice";
 import { useRouter } from 'next/navigation';
 import { displayMessage, MyFormItem } from '../../components/utils/utils';
 

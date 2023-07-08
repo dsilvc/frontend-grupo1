@@ -1,12 +1,12 @@
 import Layout from "../../components/Layout";
 import { Button, Card, Col, Form,  Input, message, Modal, Row, Radio, Switch, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
 import axios from "axios";
 import Image from "next/image";
 import photo from "../../assets/profile-placeholder.png";
 import { useRouter } from 'next/navigation';
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 
 export default function Home() {
   const [user, setUser] = useState({
@@ -18,7 +18,6 @@ export default function Home() {
   const [createMode, setCreateMode] = useState(false);
   const [isClass, setIsClass] = useState(false);
   const token = useAppSelector((state) => state.userReducer.value.token)
-  console.log("token:", token)
   const router = useRouter()
   const dispatch = useAppDispatch();
 

@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 
 export default function ChangePassword() {
   const email = useAppSelector((state) => state.userReducer.value.email)
-  console.log(email)
   const token = useAppSelector((state) => state.userReducer.value.token)
   const router = useRouter()
   const dispatch = useAppDispatch();
