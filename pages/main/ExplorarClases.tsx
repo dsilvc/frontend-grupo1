@@ -108,8 +108,8 @@ export default function Explorar() {
           },
           withCredentials: false,
         }).then((response) => {
-          setServices(response.data.data)
-          setFilteredServices(response.data.data)
+          setServices(response.data.data.filter((p: any) => p.available && p.approved))
+          setFilteredServices(response.data.data.filter((p: any) => p.available && p.approved))
         }).catch((error) => {
           message.error('Hubo un error al cargar los servicios disponibles')
         })
@@ -274,13 +274,13 @@ export default function Explorar() {
            <Form name="form_item_path" layout="vertical" onFinish={filterServices}>
               
               <MyFormItemGroup prefix={['service']}>
-                {/* <MyFormItem name="type" label="Tipo de oferta">
-                  <Radio.Group defaultValue={filteredValues.type}>
+                <MyFormItem name="type" label="Tipo de oferta">
+                  <Radio.Group>
                     <Radio value="professor">Quiero ofrecer una clase</Radio>
                     <Radio value="student">Quiero tomar una clase</Radio>
                     <Radio value="both">Continuar sin filtro</Radio>
                   </Radio.Group>
-                </MyFormItem> */}
+                </MyFormItem>
                 <MyFormItem name="class_id" label="Clase">
                   <Select
                    allowClear
@@ -316,12 +316,12 @@ export default function Explorar() {
                   </Select>
               
                 </MyFormItem>
-                {/* <MyFormItem name="lowerPrice" label="Monto menor a..(CLP)">
-                  <Input type='number' min="0" step="any" defaultValue={filteredValues.lowerPrice} onChange={(event) => setLowerPrice(Number(event.target.value))} />
+                <MyFormItem name="lowerPrice" label="Monto mayor a..(CLP)">
+                  <Input type='number' min="0" step="any" onChange={(event) => setLowerPrice(Number(event.target.value))} />
                 </MyFormItem>
-                <MyFormItem name="upperPrice" label="Monto mayor a..(CLP)">
-                  <Input type='number' min={lowerPrice} defaultValue={filteredValues.upperPrice} step="any"/>
-                </MyFormItem> */}
+                <MyFormItem name="upperPrice" label="Monto menor a..(CLP)">
+                  <Input type='number' min={lowerPrice} step="any"/>
+                </MyFormItem>
             </MyFormItemGroup>
 
           <Button type="primary" htmlType="submit" className="login-button" >
