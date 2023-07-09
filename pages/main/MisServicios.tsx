@@ -12,11 +12,11 @@ const rate: React.FC = () => <Rate allowHalf defaultValue={2.5} />;
 // Cambiar con datos reales iterando sobre la bbdd --> chequeaer como la armaron al final
 
 export default function MisServicios() {
-  const [myservices, setServices] = useState([]);
+  const [myservices, setServices] = useState<any[]>([]);
   const [createMode, setCreateMode] = useState(false);
   const token = useAppSelector((state) => state.userReducer.value.token)
   const router = useRouter()
-  const [reviewItems, setReviewItems] = useState([])
+  const [reviewItems, setReviewItems] = useState<any[]>([])
 
   const columnsMisServicios = [
     {
@@ -63,7 +63,7 @@ export default function MisServicios() {
       sorter: true,
       render: (review: any) => (
         <Space direction="vertical">
-          <Rate disabled={true} value={review.reduce(function (avg: any, value: any, _ : any, { length }) {
+          <Rate disabled={true} value={review.reduce(function (avg: any, value: any, _ : any, { length }: any) {
             return avg + value.review / length;
             }, 0)}
           />

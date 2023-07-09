@@ -21,7 +21,6 @@ export default function MisServicios() {
   const [offeredServices, setServices] = useState<any[]>([]);
   const [createMode, setCreateMode] = useState(false);
   const [isClass, setIsClass] = useState(false);
-  const [currentClass, setCurrentClass] = useState(0);
   const [reviewItem, setReviewItem] = useState(0);
   const token = useAppSelector((state) => state.userReducer.value.token)
   const router = useRouter()
@@ -134,7 +133,7 @@ export default function MisServicios() {
           withCredentials: false,
         }).then((response) => {
           setServices(response.data.data)
-          console.log(offeredServices[0]['service']['review'])
+          console.log(response.data.data)
         }).catch((error) => {
           message.error('Hubo un error al cargar los servicios disponibles')
         })
@@ -190,8 +189,8 @@ export default function MisServicios() {
           destroyOnClose={true}
         >     
 
-        {offeredServices.filter((s: any) => s.service_id == reviewItem)[0]['service']['review'].map((review: any) => {
-           return (<Row align='middle' style={{display:'flex', width:'100%', flexDirection:'row'}}>
+        {offeredServices.filter((s: any) => s.service_id == reviewItem)[0].service.review.map((review: any) => {
+           return (<Row key={review.id} align='middle' style={{display:'flex', width:'100%', flexDirection:'row'}}>
            <Col sm={16} style={{height:'100%'}}>
 
                 {review.comment}
