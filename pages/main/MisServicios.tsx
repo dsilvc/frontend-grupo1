@@ -1,5 +1,5 @@
 import Layout from "../../components/Layout";
-import { Button, Table, Rate, Space, Popover, Switch, message } from 'antd';
+import { Button, Table, Rate, Space, Popover, Switch, message, Col, Modal, Row, Typography} from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
@@ -8,109 +8,78 @@ import { useRouter } from 'next/navigation';
 
 const rate: React.FC = () => <Rate allowHalf defaultValue={2.5} />;
 
-const columnsMisServicios = [
-  {
-    title: 'Clase',
-    dataIndex: 'class_name',
-    key: 'class_name',
-  },
-  {
-    title: 'Precio',
-    dataIndex: 'price',
-    key: 'price',
-  },
-  {
-    title: 'Tipo',
-    dataIndex: 'type',
-    key: 'type',
-  },
-  {
-    title: 'Realizado',
-    key: 'state',
-    sorter: true,
-    render: () => (
-      <Space direction="vertical">
-        <Switch
-          checkedChildren={<CheckOutlined />}
-          unCheckedChildren={<CloseOutlined />}
-          defaultChecked
-        />
-      </Space>
-    ),
-  },
-  {
-    title: 'Pagado',
-    key: 'paid',
-    sorter: true,
-    render: () => (
-      <Space direction="vertical">
-        <Switch
-          checkedChildren={<CheckOutlined />}
-          unCheckedChildren={<CloseOutlined />}
-          defaultChecked
-        />
-      </Space>
-    ),
-  },
-  {
-    title: 'Calificación',
-    dataIndex: 'score',
-    key: 'score',
-    sorter: true,
-    render: () => (
-      <Space direction="vertical">
-        <Rate
-        />
-      </Space>
-    ),
-  },
-  {
-    title: 'Reseña',
-    dataIndex: 'comment',
-    key: 'comment',
-    sorter: true,
-    render: (text: string) => (
-      <Popover content={text} title="Reseña">
-        <Button type="primary" style={{ background: "grey" }} >Ver reseña</Button>
-      </Popover >
-    ),
-  }
-];
 
 // Cambiar con datos reales iterando sobre la bbdd --> chequeaer como la armaron al final
-const dataSourceMisServicios = [
-  {
-    offer_id: '1',
-    Service_title: 'Grupo de estudio', //no está en el modelo de datos
-    class_name: 'cálculo 1',
-    price: 0,
-    user: 'Josefina',
-    paid: true, //no está en el modelo de datos
-    state: false, // and entre approved y available del modelo
-    score: 3, //no está en el modelo de datos
-    comment: 'muy ordenada', //no está en el modelo de datos
-  },
-  {
-    offer_id: '2',
-    Service_title: 'Clases particulares', //no está en el modelo de datos
-    class_name: 'Introducción a la programación',
-    price: 15000,
-    user: 'Pedro',
-    paid: false, //no está en el modelo de datos
-    state: true, // and entre approved y available del modelo
-    score: 5, //no está en el modelo de datos
-    comment: 'muy puntual y me encanto la clase', //no está en el modelo de datos
-  },
-];
 
 export default function MisServicios() {
   const [myservices, setServices] = useState([]);
-  const [classes, setClasses] = useState([]);
   const [createMode, setCreateMode] = useState(false);
-  const [isClass, setIsClass] = useState(false);
-  const [currentClass, setCurrentClass] = useState(null);
   const token = useAppSelector((state) => state.userReducer.value.token)
   const router = useRouter()
+  const [reviewItems, setReviewItems] = useState([])
+
+  const columnsMisServicios = [
+    {
+      title: 'Clase',
+      dataIndex: 'class_name',
+      key: 'class_name',
+    },
+    {
+      title: 'Precio',
+      dataIndex: 'price',
+      key: 'price',
+    },
+    {
+      title: 'Tipo',
+      dataIndex: 'type',
+      key: 'type',
+      render: (type: any) => (
+        <Space direction="vertical">
+          {type === 'professor' ? 'Profesor': 'Estudiante'}
+        </Space>
+      ),
+    },
+    {
+      title: 'Disponible',
+      dataIndex: 'available',
+      key: 'available',
+      sorter: true,
+      render: (id: any) => (
+        <Space direction="vertical">
+          <Switch
+            checkedChildren={<CheckOutlined />}
+            unCheckedChildren={<CloseOutlined />}
+            checked={myservices.filter((d :any) => d.available && d.id == id).length > 0}
+            onChange={() => patchServicesbyUser(id)}
+          />
+        </Space>
+      ),
+    },
+  
+    {
+      title: 'Calificación',
+      dataIndex: 'review',
+      key: 'score',
+      sorter: true,
+      render: (review: any) => (
+        <Space direction="vertical">
+          <Rate disabled={true} value={review.reduce(function (avg: any, value: any, _ : any, { length }) {
+            return avg + value.review / length;
+            }, 0)}
+          />
+        </Space>
+      ),
+    },
+    {
+      title: 'Reseña',
+      dataIndex: 'review',
+      key: 'review',
+      sorter: true,
+      render: (review: any) => (
+          <Button type="primary" disabled={review.length == 0} style={{ background: "grey" }} onClick={() => setReviewItems(review)}>Ver reseñas</Button>
+      ),
+    }
+  ];
 
   useEffect(() => {
     if (token.length == 0){
@@ -142,6 +111,26 @@ export default function MisServicios() {
         })
   }
 
+
+  const patchServicesbyUser = (service_id: any) => {
+    const newData : any = myservices.filter((d :any) => d.id == service_id)[0]
+    newData.available = !newData.available
+    const url = `${process.env.serverUrl}/services/${service_id}`
+        axios.get(url, newData, {
+          headers: {
+            'x-access-token' : token,
+            'Content-Type': 'application/json',
+          },
+          withCredentials: false,
+        }).then((response) => {
+          setServices(response.data.data)
+          console.log(response.data.data.available)
+        }).catch((error) => {
+          message.error('Hubo un error al cargar los servicios disponibles')
+        })
+  }
+
+
   return (
     <Layout>
       <div className="mb-3">
@@ -153,6 +142,34 @@ export default function MisServicios() {
       <div className="flex-1">
         <Table dataSource={myservices} columns={columnsMisServicios} />
       </div>
+
+      {reviewItems.length > 0  && (
+        <Modal
+          centered={true}
+          open={reviewItems.length > 0 }
+          title='reseñas'
+          footer={null}
+          onCancel={() => setReviewItems([])}
+          destroyOnClose={true}
+        >     
+        <Row>
+          <Typography.Text strong>Promedio: {reviewItems.reduce(function (avg, value, _, { length }) {
+        return avg + value.review / length;
+    }, 0)}</Typography.Text>
+        </Row>
+        {reviewItems.map((review: any) => {
+           return (<Row key={review.id} align='middle' style={{display:'flex', width:'100%', flexDirection:'row'}}>
+           <Col sm={16} style={{height:'100%'}}>
+
+                {review.comment}
+            </Col>
+            <Col sm={8}>
+                <Rate disabled={true} value={review.review}/>
+            </Col>
+            </Row>)
+        })}
+            </Modal>
+      )}
     </Layout>
   )
 }

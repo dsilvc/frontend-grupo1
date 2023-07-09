@@ -44,13 +44,7 @@ export default function Explorar() {
   const [createMode, setCreateMode] = useState(false);
   const [filteredMode, setFilteredMode] = useState(false);
   const [lowerPrice, setLowerPrice] = useState(0);
-  const [filteredValues, setFilteredValues] = useState({
-    class_id: [],
-    area: [],
-    type: 'both',
-    lowerPrice: 0,
-    upperPrice: 0
-  });
+  const [areas, setAreas] = useState([]);
   const [isClass, setIsClass] = useState(false);
   const [currentClass, setCurrentClass] = useState(null);
   const token = useAppSelector((state) => state.userReducer.value.token)
@@ -61,7 +55,7 @@ export default function Explorar() {
       router.push('/session')
     }
     getServices();
-    getClasses()
+    getClasses();
   }, []);
 
   useEffect(() => {
@@ -75,7 +69,7 @@ export default function Explorar() {
   const filterServices = (value: any) => {
     let newFilteredServices : any;
     newFilteredServices = services
-    setFilteredValues(value.service)
+    console.log(value)
     if (value.service.class_id && value.service.class_id.length > 0){
       newFilteredServices = filteredServices.filter((obj: any) => 
         value.service.class_id.includes(obj.class_id)
@@ -88,7 +82,7 @@ export default function Explorar() {
     }
     if ( value.service.type && value.service.type != 'both'  ){
       newFilteredServices = newFilteredServices.filter((obj: any) => 
-        value.service.type === obj.clase.area
+        value.service.type === obj.type
       )
     }
     if (value.service.lowerPrice && value.service.lowerPrice >= 0){
@@ -131,6 +125,9 @@ export default function Explorar() {
           withCredentials: false,
         }).then((response) => {
           setClasses(response.data.data)
+          const initialAreas : any = response.data.data.map((c: any) => c.area)
+          console.log(initialAreas)
+          setAreas(initialAreas.filter((item: any, index: any) => initialAreas.indexOf(item) == index))
         }).catch((error) => {
           message.error('Hubo un error al cargar las clases disponibles')
         })
@@ -287,7 +284,6 @@ export default function Explorar() {
                 <MyFormItem name="class_id" label="Clase">
                   <Select
                    allowClear
-                   defaultValue={filteredValues.class_id}
                    mode="multiple"
                    style={{ width: "100%" }}
                    placeholder="Clases"
@@ -309,12 +305,11 @@ export default function Explorar() {
                    mode="multiple"
                    style={{ width: "100%" }}
                    placeholder="Área"
-                   defaultValue={filteredValues.area}
                    >
                       {
-                        classes.map((c: any, key) => { return (
-                          <Select.Option value={c.area} key={c.area}>
-                              {c.area}
+                        areas.map((c: any) => { return (
+                          <Select.Option value={c} key={c}>
+                              {c}
                           </Select.Option>)}
                         )
                       }
