@@ -41,7 +41,7 @@ export default function MisServicios() {
     },
     {
       title: 'Disponible',
-      dataIndex: 'available',
+      dataIndex: 'id',
       key: 'available',
       sorter: true,
       render: (id: any) => (
@@ -116,14 +116,14 @@ export default function MisServicios() {
     const newData : any = myservices.filter((d :any) => d.id == service_id)[0]
     newData.available = !newData.available
     const url = `${process.env.serverUrl}/services/${service_id}`
-        axios.get(url, newData, {
+        axios.put(url, newData, {
           headers: {
             'x-access-token' : token,
             'Content-Type': 'application/json',
           },
           withCredentials: false,
         }).then((response) => {
-          setServices(response.data.data)
+          getServicesbyUser()
           console.log(response.data.data.available)
         }).catch((error) => {
           message.error('Hubo un error al cargar los servicios disponibles')
