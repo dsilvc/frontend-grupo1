@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { FunctionComponent, ReactNode } from "react";
 
-
+import { useAppDispatch } from "@/redux/hooks";
+import { setToken } from "./../redux/features/userSlice";
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
+  const dispatch = useAppDispatch();
   return (
     <div className="flex flex-col">
       <div className="flex h-[6rem] w-screen items-center justify-between bg-[#283645] pl-[47.5px] pr-16">
@@ -24,7 +26,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
           <Link href="/user/profile" className="font-prata text-1xl">
             Mi Perfil
           </Link>
-          <Link href="/" className="font-prata text-1xl">
+          <Link href="/" className="font-prata text-1xl" onClick={() => dispatch(setToken(''))}>
             Salir
           </Link>
         </div>
