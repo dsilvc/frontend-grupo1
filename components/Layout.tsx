@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { FunctionComponent, ReactNode } from "react";
-
+import { useAppDispatch } from "@/redux/hooks";
+import { setToken } from "./../redux/features/userSlice";
+        
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
+  const dispatch = useAppDispatch();
   return (
     <div className="flex flex-col">
       <div className="flex h-[6rem] w-screen items-center justify-between bg-[#283645] pl-[47.5px] pr-16">
@@ -21,7 +24,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
           <Link href="/user/profile" className="font-prata text-1xl">
             Mi Perfil
           </Link>
-          <Link href="/" className="font-prata text-1xl">
+          <Link href="/" className="font-prata text-1xl" onClick={() => dispatch(setToken(''))}>
             Salir
           </Link>
         </div>
@@ -35,12 +38,12 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
           </div>
           <div className="mt-[38px] w-full flex-col space-y-[21px] px-7">
             <Link href="/main/MisServicios" className="font-work-sans text-xl text-[#213144]">
-              Mis Servicios
+              Mis Ofertas
             </Link>
           </div>
           <div className="mt-[38px] w-full flex-col space-y-[21px] px-7">
-            <Link href="/main/ExplorarClases" className="font-work-sans text-xl text-[#213144]">
-              Servicios Contratados
+            <Link href="/main/OfertasContactatdas" className="font-work-sans text-xl text-[#213144]">
+              Ofertas Contactadas
             </Link>
           </div>
           <div className="mt-[38px] w-full flex-col space-y-[21px] px-7">

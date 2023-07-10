@@ -1,12 +1,12 @@
 import Layout from "../../components/Layout";
 import { Table } from 'antd';
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { Button, Rate, Space, Popover, Switch, message, Col, Modal, Row, Typography} from 'antd';
+import { useRouter } from 'next/navigation';
 
 const columnsMisServicios = [
-  {
-    title: 'Nombre Servicio',
-    dataIndex: 'Service_title',
-    key: 'Service_title',
-  },
   {
     title: 'Clase',
     dataIndex: 'class_name',
@@ -18,58 +18,158 @@ const columnsMisServicios = [
     key: 'price',
   },
   {
-    title: 'Estado Pago',
-    dataIndex: 'paid',
-    key: 'paid',
-  },
-  {
-    title: 'Estado',
-    dataIndex: 'state',
-    key: 'state',
+    title: 'Cantidad de contrataciones',
+    dataIndex: 'offers',
+    key: 'offers',
+    render: (offers: any) => (
+      <Space direction="vertical">
+        {offers.length}
+      </Space>
+    ),
   },
   {
     title: 'Calificación',
-    dataIndex: 'score',
+    dataIndex: 'review',
     key: 'score',
+    render: (review: any) => (
+      <Space direction="vertical">
+        <Rate disabled={true} value={review.reduce(function (avg: any, value: any, _ : any, { length }: any) {
+          return avg + value.review / length;
+          }, 0)}
+        />
+      </Space>
+    ),
   },
+  
 ];
 
-// Cambiar con datos reales iterando sobre la bbdd --> chequeaer como la armaron al final
-const dataSourceMisServicios = [
+const columnsMisOfertas = [
   {
-    offer_id: '1',
-    Service_title: 'Grupo de estudio', //no está en el modelo de datos
-    class_name: 'cálculo 1',
-    price: 0,
-    paid: true, //no está en el modelo de datos
-    state: false, // and entre approved y available del modelo
-    score: 4, //no está en el modelo de datos
+    title: 'Clase',
+    dataIndex: 'service',
+    key: 'class',
+    render: (service: any) => (
+      <Space direction="vertical">
+        {service.clase.name}
+      </Space>
+    ),
   },
   {
-    offer_id: '2',
-    Service_title: 'Clases particulares', //no está en el modelo de datos
-    class_name: 'Introducción a la programación',
-    price: 15000,
-    paid: false, //no está en el modelo de datos
-    state: true, // and entre approved y available del modelo
-    score: 5, //no está en el modelo de datos
+    title: 'Precio',
+    dataIndex: 'price',
+    key: 'price',
   },
+
+  {
+    title: 'Tipo',
+    dataIndex: 'service',
+    key: 'type',
+    render: (service: any) => (
+      <Space direction="vertical">
+        {service.type === 'professor' ? 'Profesor': 'Estudiante'}
+      </Space>
+    ),
+  },
+  {
+    title: 'Precio',
+    dataIndex: 'service',
+    key: 'price',
+    render: (service: any) => (
+      <Space direction="vertical">
+        {service.price}
+      </Space>
+    ),
+  },
+  {
+    title: 'Usuario que la ofrece',
+    dataIndex: 'service',
+    key: 'username',
+    render: (service: any) => (
+      <Space direction="vertical">
+        {'@' + service.user.username}
+      </Space>
+    ),
+  },
+  {
+    title: 'Calificación',
+    dataIndex: 'service',
+    key: 'score',
+    sorter: true,
+    render: (service: any) => (
+      <Space direction="vertical">
+        <Rate disabled={true} value={service.review.length>0 ? service.review[0].review : 0}
+        />
+      </Space>
+    ),
+  },
+  {
+    title: '¿Realizaste reseña?',
+    dataIndex: 'service',
+    key: 'review',
+    sorter: true,
+    render: (service: any) => (
+      <Space direction="vertical">
+        {service.review.length > 0? 'Si':'No' }
+      </Space> 
+    ),
+  }
 ];
+
+
 
 
 export default function Historial() {
+  const token = useAppSelector((state) => state.userReducer.value.token);
+  const router = useRouter();
+  const [myServices, setServices] = useState([]);
+  const [myOffers, setOffers] = useState([]);
+
+  useEffect(() => {
+    getServicesbyUser()
+    getOffersbyUser()
+  }, [])
+  const getServicesbyUser = () => {
+    const url = `${process.env.serverUrl}/services/servicesbyuser`
+        axios.get(url, {
+          headers: {
+            'x-access-token' : token,
+            'Content-Type': 'application/json',
+          },
+          withCredentials: false,
+        }).then((response) => {
+          setServices(response.data.data)
+        }).catch((error) => {
+          message.error('Hubo un error al cargar los servicios disponibles')
+        })
+  }
+
+  const getOffersbyUser = () => {
+    const url = `${process.env.serverUrl}/offers/offersbyuser`
+        axios.get(url, {
+          headers: {
+            'x-access-token' : token,
+            'Content-Type': 'application/json',
+          },
+          withCredentials: false,
+        }).then((response) => {
+          setOffers(response.data.data)
+          console.log(response.data.data)
+        }).catch((error) => {
+          message.error('Hubo un error al cargar los servicios disponibles')
+        })
+  }
   return (
     <Layout>
       <div className="mb-10">
         <h1 className="font-work-sans text-4xl text-[#001529] font-bold pb-[1rem]">Historial</h1>
       </div>
       <div className="flex-1">
-        <h2 className="font-work-sans text-2xl text-[#001529] font-bold">Mis servicios</h2>
-        <Table dataSource={dataSourceMisServicios} columns={columnsMisServicios} />
+        <h2 className="font-work-sans text-2xl text-[#001529] font-bold">Mis ofertas</h2>
+        <Table dataSource={myServices} columns={columnsMisServicios} />
       </div>
       <div className="flex-1">
-        <h2 className="font-work-sans text-2xl text-[#001529] font-bold">Servicios Contratados</h2>
-        <Table dataSource={dataSourceMisServicios} columns={columnsMisServicios} />
+        <h2 className="font-work-sans text-2xl text-[#001529] font-bold">Ofertas realizadas</h2>
+        <Table dataSource={myOffers} columns={columnsMisOfertas} />
       </div>
     </Layout>
   );
