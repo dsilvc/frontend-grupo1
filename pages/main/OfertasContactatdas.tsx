@@ -18,11 +18,10 @@ const rate: React.FC = () => <Rate allowHalf defaultValue={2.5} />;
 // Cambiar con datos reales iterando sobre la bbdd --> chequeaer como la armaron al final
 
 export default function MisServicios() {
-  const [offeredServices, setServices] = useState([]);
+  const [offeredServices, setServices] = useState<any[]>([]);
   const [createMode, setCreateMode] = useState(false);
   const [isClass, setIsClass] = useState(false);
-  const [currentClass, setCurrentClass] = useState(null);
-  const [reviewItem, setReviewItem] = useState(null);
+  const [reviewItem, setReviewItem] = useState(0);
   const token = useAppSelector((state) => state.userReducer.value.token)
   const router = useRouter()
 
@@ -117,7 +116,7 @@ export default function MisServicios() {
       },
       withCredentials: false,
     }).then((response) => {
-      setReviewItem(null)
+      setReviewItem(0)
       getServicesbyUser()
       
     }).catch((error) => {
@@ -157,7 +156,7 @@ export default function MisServicios() {
           open={!!reviewItem }
           title='Agregar reseña'
           footer={null}
-          onCancel={() => setReviewItem(null)}
+          onCancel={() => setReviewItem(0)}
           destroyOnClose={true}
         >
            <Form name="form_item_path" layout="vertical" onFinish={publishReview}>
@@ -186,12 +185,12 @@ export default function MisServicios() {
           open={!!reviewItem }
           title='Ver reseña'
           footer={null}
-          onCancel={() => setReviewItem(null)}
+          onCancel={() => setReviewItem(0)}
           destroyOnClose={true}
         >     
 
         {offeredServices.filter((s: any) => s.service_id == reviewItem)[0].service.review.map((review: any) => {
-           return (<Row align='middle' style={{display:'flex', width:'100%', flexDirection:'row'}}>
+           return (<Row key={review.id} align='middle' style={{display:'flex', width:'100%', flexDirection:'row'}}>
            <Col sm={16} style={{height:'100%'}}>
 
                 {review.comment}
