@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/25</span>
+                <span class='fraction'>0/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/7</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.69% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/23</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
@@ -171,7 +171,9 @@
 <a name='L106'></a><a href='#L106'>106</a>
 <a name='L107'></a><a href='#L107'>107</a>
 <a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,15 +189,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -218,17 +213,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -280,8 +284,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { FunctionComponent, ReactNode } from "react";
-import React, {useEffect} from 'react';
-import { Form, Input, Button, Col, Row } from 'antd';
+import React, { useEffect } from 'react';
+import { Form, Input, Button, Col, Row, message } from 'antd';
 import LogInBackground from "./LogInBackground";
 import Logo from "../assets/uc.png";
 import Image from "next/image";
@@ -296,95 +300,97 @@ interface LoginProps {
   children: ReactNode;
 }
 &nbsp;
-const Login: FunctionComponent&lt;LoginProps&gt; = ({ children }) =&gt; {
-  const router = useRouter()
+const Login: FunctionComponent&lt;LoginProps&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> children }) =&gt; {</span>
+  const router = <span class="cstat-no" title="statement not covered" >useRouter()</span>
   const dispatch = <span class="cstat-no" title="statement not covered" >useAppDispatch();</span>
   const token = <span class="cstat-no" title="statement not covered" >useAppSelector((<span class="fstat-no" title="function not covered" >st</span>ate =&gt; <span class="cstat-no" title="statement not covered" >state.userReducer.value.token)</span>)</span>
   const email = <span class="cstat-no" title="statement not covered" >useAppSelector((<span class="fstat-no" title="function not covered" >st</span>ate =&gt; <span class="cstat-no" title="statement not covered" >state.userReducer.value.email)</span>)</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-    //TODO: diferenciar entre validados y no validados
-<span class="cstat-no" title="statement not covered" >    if (token.length &gt; 1) {</span>
-<span class="cstat-no" title="statement not covered" >      router.push('/user/profile')</span>
-    } else <span class="cstat-no" title="statement not covered" >if (email.length &gt; 1) {</span>
-<span class="cstat-no" title="statement not covered" >      router.push('/session')</span>
-    }
-  }, [token, router])
+&nbsp;
 &nbsp;
   const onFinish = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(v</span>alue: any) =&gt; {</span>
-    const data =  <span class="cstat-no" title="statement not covered" >value.credentials</span>
-<span class="cstat-no" title="statement not covered" >    if (!data.email.endsWith('@uc.cl')){</span>
+    const data = <span class="cstat-no" title="statement not covered" >value.credentials</span>
+<span class="cstat-no" title="statement not covered" >    if (!data.email.endsWith('@uc.cl')) {</span>
 <span class="cstat-no" title="statement not covered" >      displayMessage(</span>
         'El correo no coincide con el formato permitido'
       )
     }
     const url = <span class="cstat-no" title="statement not covered" >`${process.env.serverUrl}/users/log-in`</span>
-<span class="cstat-no" title="statement not covered" >    axios.post(</span>
-      url,data, {
-        withCredentials: false,
-        headers: {
-          'Content-Type': 'application/json',
-          
-        }
-      }
-     ).then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-<span class="cstat-no" title="statement not covered" >        dispatch(setEmail(data.email))</span>
+<span class="cstat-no" title="statement not covered" >    axios.post(url, data, {</span>
+      withCredentials: false,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >        dispatch(setEmail(data.email));</span>
 <span class="cstat-no" title="statement not covered" >        if (response.data.message.Token) {</span>
-<span class="cstat-no" title="statement not covered" >          dispatch(setToken(response.data.message.Token))</span>
+<span class="cstat-no" title="statement not covered" >          dispatch(setToken(response.data.message.Token));</span>
+          const isAdmin = <span class="cstat-no" title="statement not covered" >response.data.message.isAdmin;</span>
+<span class="cstat-no" title="statement not covered" >          console.log(isAdmin)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if (isAdmin == true) {</span>
+<span class="cstat-no" title="statement not covered" >            router.push('/admin/PendientesAprobacion');</span>
+          } else {
+            // Handle redirection for non-admin users, if needed
+<span class="cstat-no" title="statement not covered" >            router.push('/user/profile');</span>
+          }
         }
-      }).catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {
-<span class="cstat-no" title="statement not covered" >        if ( error.response?.data.message == 'Wrong credentials'){</span>
+      })
+      .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {
+<span class="cstat-no" title="statement not covered" >        if (error.response?.data.message == 'Wrong credentials') {</span>
 <span class="cstat-no" title="statement not covered" >          displayMessage('Creedenciales incorrectas')</span>
         } else {
 <span class="cstat-no" title="statement not covered" >          displayMessage('falta información para el registro')</span>
         }
-      })};
+      })
+  };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;&gt;
-    &lt;Row className="login-display"&gt;
-      &lt;Col sm={9}&gt;
+      &lt;Row className="login-display"&gt;
+        &lt;Col sm={9}&gt;
           &lt;LogInBackground /&gt;
-      &lt;/Col&gt;
-      &lt;Col sm={13} className="login-col"&gt;
-        &lt;h1 className="form-title"&gt;¡Bienvenido!&lt;/h1&gt;
-        &lt;br&gt;&lt;/br&gt;
-        &lt;br&gt;&lt;/br&gt;
-        &lt;div className="login-form"&gt;
-          &lt;Form name="form_item_path" layout="vertical" onFinish={onFinish}&gt;
-        
+        &lt;/Col&gt;
+        &lt;Col sm={13} className="login-col"&gt;
+          &lt;h1 className="form-title"&gt;¡Bienvenido!&lt;/h1&gt;
+          &lt;br&gt;&lt;/br&gt;
+          &lt;br&gt;&lt;/br&gt;
+          &lt;div className="login-form"&gt;
+            &lt;Form name="form_item_path" layout="vertical" onFinish={onFinish}&gt;
+&nbsp;
               &lt;MyFormItemGroup prefix={['credentials']}&gt;
                 &lt;MyFormItem name="email" label="Correo UC"&gt;
-                  &lt;Input type='email'/&gt;
+                  &lt;Input type='email' /&gt;
                 &lt;/MyFormItem&gt;
                 &lt;MyFormItem name="password" label="Contraseña"&gt;
                   &lt;Input type='password' /&gt;
                 &lt;/MyFormItem&gt;
-            &lt;/MyFormItemGroup&gt;
+              &lt;/MyFormItemGroup&gt;
 &nbsp;
-            &lt;Link href="/session/password"&gt;
-              &lt;p&gt;¿Olvidaste tu contraseña? Presiona aquí&lt;/p&gt;
-            &lt;/Link&gt;
-            &lt;br&gt;&lt;/br&gt;
-            &lt;br&gt;&lt;/br&gt;
-            
+              &lt;Link href="/session/password"&gt;
+                &lt;p&gt;¿Olvidaste tu contraseña? Presiona aquí&lt;/p&gt;
+              &lt;/Link&gt;
+              &lt;br&gt;&lt;/br&gt;
+              &lt;br&gt;&lt;/br&gt;
+&nbsp;
               &lt;Button type="primary" htmlType="submit" className="login-button"&gt;
                 Iniciar Sesión
               &lt;/Button&gt;
-          &lt;/Form&gt;
-        &lt;/div&gt;
-        &lt;br&gt;&lt;/br&gt;
-        &lt;Link href="/session/signin"&gt;
-              &lt;p&gt;¿No tienes cuenta? Regístrate aquí&lt;/p&gt;
-            &lt;/Link&gt;
-      &lt;/Col&gt;
-      &lt;Col sm={2} className="logo-pos"&gt;
-        &lt;Image src={Logo} alt="Logo UC" className="logo-uc"/&gt;
-      &lt;/Col&gt;
-    &lt;/Row&gt;
+            &lt;/Form&gt;
+          &lt;/div&gt;
+          &lt;br&gt;&lt;/br&gt;
+          &lt;Link href="/session/signin"&gt;
+            &lt;p&gt;¿No tienes cuenta? Regístrate aquí&lt;/p&gt;
+          &lt;/Link&gt;
+        &lt;/Col&gt;
+        &lt;Col sm={2} className="logo-pos"&gt;
+          &lt;Image src={Logo} alt="Logo UC" className="logo-uc" /&gt;
+        &lt;/Col&gt;
+      &lt;/Row&gt;
     &lt;/&gt;
   );
-  }
+}
 &nbsp;
 export default Login;
 &nbsp;</pre></td></tr></table></pre>
@@ -394,7 +400,7 @@ export default Login;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-09T21:52:24.818Z
+                at 2023-07-10T02:13:05.496Z
             </div>
         <script src="../prettify.js"></script>
         <script>

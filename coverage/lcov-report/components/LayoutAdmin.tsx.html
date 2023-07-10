@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/LandingPage.tsx</title>
+    <title>Code coverage report for components/LayoutAdmin.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> LandingPage.tsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> LayoutAdmin.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -107,17 +107,7 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -126,8 +116,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,71 +151,51 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { FunctionComponent, ReactNode } from "react";
-import { Button, Col, Layout, Typography, Row } from "antd";
-import Link from 'next/link';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Link from "next/link";
+import { FunctionComponent, ReactNode } from "react";
 &nbsp;
 &nbsp;
-interface LandingPageProps {
-  children: ReactNode;
-}
 &nbsp;
-const LandingPage: FunctionComponent&lt;LandingPageProps&gt; = ({ children }) =&gt; {
-  return (
-    &lt;Layout.Content className="landing-page"&gt;
-      &lt;Row className="background-image"&gt;
-        &lt;Col sm={24}  className="text-layout"&gt;
-          &lt;Row className="text-layout" gutter={[24, 24]}&gt;
-            &lt;Col sm={24}&gt;
-                &lt;Typography.Title className="text-title"&gt;
-                &lt;span className="text-title-uc"&gt; UC&lt;/span&gt;
-                Páginas Celestes
-                &lt;/Typography.Title&gt;
-            &lt;/Col&gt;
-          &lt;/Row&gt;
-          &lt;Row className="text-layout-secondary" gutter={[24, 24]}&gt;
-            &lt;Col sm={12}&gt;
-              &lt;Typography.Text className="text"&gt;
-                Una comunidad segura donde puedes buscar y ofrecer ayuda a sólo
-                un click
-              &lt;/Typography.Text&gt;
-            &lt;/Col&gt;
-          &lt;/Row&gt;
-          &lt;Row className="buttons-layout"&gt;
-              &lt;Col sm={4} className="button-container"&gt;
-                &lt;Link href="/info"&gt;
-                  &lt;Button className="left-button"&gt;
-                      Saber más
-                  &lt;/Button&gt;
-                &lt;/Link&gt;
-              &lt;/Col&gt;
-                &lt;Col sm={4} className="button-container"&gt;
-                  &lt;Link href="/session"&gt;
-                    &lt;Button type="primary" className="right-button"&gt; 
-                      Iniciar Sesión
-                    &lt;/Button&gt;
-                  &lt;/Link&gt;
-                &lt;/Col&gt;
-            
-          &lt;/Row&gt;
-        &lt;/Col&gt;
-      &lt;/Row&gt;
-    &lt;/Layout.Content&gt;
+type LayoutProps = {
+  children: React.ReactNode;
+};
+&nbsp;
+const LayoutAdmin: FunctionComponent&lt;LayoutProps&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> children }) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+    &lt;div className="flex flex-col"&gt;
+      &lt;div className="flex h-[144px] w-screen items-center justify-between bg-[#C5C57A] pl-[47.5px] pr-16"&gt;
+        &lt;Link href="/"&gt;
+          &lt;div className="relative flex h-full items-center justify-center overflow-clip"&gt;
+            &lt;h1 className="mb-3 text-[200px] font-bold text-[#2e4d7e]"&gt;UC&lt;/h1&gt;
+            &lt;h1 className="absolute inset-0 flex h-full w-full items-center justify-center font-prata text-3xl text-white"&gt;
+              Páginas Celestes
+            &lt;/h1&gt;
+          &lt;/div&gt;
+        &lt;/Link&gt;
+        &lt;div className="flex space-x-8 text-white"&gt;
+          &lt;Link href="#" className="font-prata text-2xl"&gt;
+            Salir
+          &lt;/Link&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div className="flex flex-1"&gt;
+        &lt;div className="h-[100vh] w-[15em] flex-col items-center bg-[#F0EBB3] py-[20px] sticky top-0 overflow-auto"&gt;
+          &lt;div className="mt-[38px] w-full flex-col space-y-[21px] px-7"&gt;
+            &lt;Link href="PendientesAprobacion" className="font-work-sans text-xl text-[#213144]"&gt;
+              Aprobar Ofertas
+            &lt;/Link&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div className="flex flex-col flex-1 p-5"&gt;
+          {children}
+        &lt;/div&gt;
+      &lt;/div&gt;
+&nbsp;
+    &lt;/div&gt;
   );
 };
 &nbsp;
-export default LandingPage;
-&nbsp;</pre></td></tr></table></pre>
+export default LayoutAdmin;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

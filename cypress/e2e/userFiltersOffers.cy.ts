@@ -1,0 +1,16 @@
+describe('Registered user looks for offers filtering page', () => {
+  it('should not find any offer under the values filtered', () => {
+    cy.visit('/')
+    cy.get('.buttons-layout > :nth-child(2)').click()
+    cy.get('#form_item_path_credentials_email').type('dsilvc@uc.cl')  
+    cy.get('#form_item_path_credentials_password').type('12345678')
+    cy.get('.ant-btn').click()
+    cy.get(':nth-child(1) > .font-work-sans').click()
+    cy.get('.flex > :nth-child(4) > a').click()
+    cy.get('#form_item_path_service_type > :nth-child(2) > :nth-child(2)').click()
+    cy.get('#form_item_path_service_lowerPrice').type('10000000')
+    cy.get('#form_item_path_service_upperPrice').type('10000000')
+    cy.get('#form_item_path > .ant-btn').click()
+    cy.get('.ant-card-body > :nth-child(1)').should('not.exist')
+  })
+})

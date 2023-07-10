@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -126,9 +126,7 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -137,12 +135,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,6 +152,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,18 +191,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Link from "next/link";
 import { FunctionComponent, ReactNode } from "react";
-&nbsp;
-&nbsp;
-&nbsp;
+import { useAppDispatch } from "../redux/hooks";
+import { setToken } from "./../redux/features/userSlice";
+        
 type LayoutProps = {
   children: React.ReactNode;
 };
 &nbsp;
-const Layout: FunctionComponent&lt;LayoutProps&gt; = ({ children }) =&gt; {
-  return (
+const Layout: FunctionComponent&lt;LayoutProps&gt; = <span class="fstat-no" title="function not covered" >({</span> children }) =&gt; {
+  const dispatch = <span class="cstat-no" title="statement not covered" >useAppDispatch();</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className="flex flex-col"&gt;
       &lt;div className="flex h-[6rem] w-screen items-center justify-between bg-[#283645] pl-[47.5px] pr-16"&gt;
-        
         &lt;div className="relative flex items-center justify-center overflow-clip"&gt;
           &lt;Link href="/main/ExplorarClases"&gt;
             &lt;h1 className="mb-3 text-[8rem] font-bold  font-pragati-narrow text-[#266dd869]"&gt;UC&lt;/h1&gt;
@@ -219,13 +215,13 @@ const Layout: FunctionComponent&lt;LayoutProps&gt; = ({ children }) =&gt; {
           &lt;Link href="/user/profile" className="font-prata text-1xl"&gt;
             Mi Perfil
           &lt;/Link&gt;
-          &lt;Link href="/" className="font-prata text-1xl"&gt;
+          &lt;Link href="/" className="font-prata text-1xl" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >dispatch(setToken(''))}</span>&gt;
             Salir
           &lt;/Link&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div className="flex flex-1"&gt;
-        &lt;div className="h-[100vh] w-[15em] flex-col items-center bg-[#d2dff4] py-[20px]"&gt;
+        &lt;div className="h-[100vh] w-[15em] flex-col items-center bg-[#d2dff4] py-[20px] sticky top-0 overflow-auto"&gt;
           &lt;div className="mt-[38px] w-full flex-col space-y-[21px] px-7"&gt;
             &lt;Link href="/main/ExplorarClases" className="font-work-sans text-xl text-[#213144]"&gt;
               Explorar Clases
@@ -251,13 +247,11 @@ const Layout: FunctionComponent&lt;LayoutProps&gt; = ({ children }) =&gt; {
           {children}
         &lt;/div&gt;
       &lt;/div&gt;
-&nbsp;
     &lt;/div&gt;
   );
 };
 &nbsp;
 export default Layout;
-&nbsp;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -265,7 +259,7 @@ export default Layout;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-09T21:52:24.818Z
+                at 2023-07-10T02:13:05.496Z
             </div>
         <script src="../prettify.js"></script>
         <script>
