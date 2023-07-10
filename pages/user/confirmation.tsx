@@ -1,11 +1,11 @@
-import Layout from "@/components/Layout";
+import Layout from "../../components/Layout";
 import { Button, Card, Col, Form,  Input, message, Modal, Row, Radio, Switch, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { displayMessage } from '../../components/utils/utils';
 import { useRouter } from 'next/navigation';
-import { setEmail} from "@/redux/features/userSlice";
+import { setEmail} from "../../redux/features/userSlice";
 
 export default function Confirmation() {
 
