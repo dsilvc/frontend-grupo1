@@ -1,9 +1,10 @@
 import Layout from "../../components/Layout";
 import { Button, Card, Col, Form,  Input, message, Modal, Row, UploadProps, Upload, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { InboxOutlined } from '@ant-design/icons';
-import { MyFormItemGroup, MyFormItem } from '../../components/utils/utils';
-import { useAppSelector } from "../../redux/hooks";
+import axios from "axios";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { MyFormItem, MyFormItemGroup, displayMessage } from '../../components/utils/utils';
+import { useRouter } from 'next/navigation';
 
 const normFile = (e: any) => {
   if (Array.isArray(e)) {
@@ -12,22 +13,50 @@ const normFile = (e: any) => {
   return e?.fileList;
 };
 
-const props: UploadProps = {
-  multiple: false,
-  beforeUpload: (file) => {
-    const isPNG = file.type === 'image/png';
-    if (!isPNG) {
-      message.error(`${file.name} no es un archivo PNG`);
-    }
-    return isPNG || Upload.LIST_IGNORE;
-  },
-  onChange: (info) => {
-    console.log(info.fileList);
-  },
-};
+// const props: UploadProps = {
+//   multiple: false,
+//   beforeUpload: (file) => {
+//     const isPNG = file.type === 'image/png';
+//     if (!isPNG) {
+//       message.error(`${file.name} no es un archivo PNG`);
+//     }
+//     return isPNG || Upload.LIST_IGNORE;
+//   },
+//   onChange: (info) => {
+//     console.log(info.fileList);
+//   },
+// };
 
 export default function Home() {
-  const token = useAppSelector((state) => state.userReducer.value.token);
+  const token = useAppSelector((state) => state.userReducer.value.token)
+  const firstName = useAppSelector((state) => state.userReducer.value.firstName)
+  const lastName = useAppSelector((state) => state.userReducer.value.lastName)
+  const username = useAppSelector((state) => state.userReducer.value.username)
+  const router = useRouter()
+
+  const onFinish = (value: any) => {
+  
+    const data = {
+      firstName: value.firstName,
+      lastName: value.lastName,
+      username: value.username,
+    }
+    const url = `${process.env.serverUrl}/users/profile`
+    axios.put(url, data, {
+      headers: {
+        'x-access-token' : token,
+        'Content-Type': 'application/json',
+      },
+      withCredentials: false
+    }).then((response) => {
+      message.success('Datos actualizados')
+      router.push('/user/profile')
+    }).catch((error) => {
+      displayMessage('Hay datos enviados con errores')
+    })
+    return
+  };
+
   return (
     <Layout>
       <Row className="edit-info">
@@ -35,9 +64,7 @@ export default function Home() {
         <h1 className="profile-form">Editar perfil</h1>
         <br></br>
         <br></br>
-        <Form name="form_item_path" layout="vertical">
-            <MyFormItemGroup prefix={['user']}>
-              <MyFormItemGroup prefix={['userInformation']}>
+        <Form name="form_item_path" layout="vertical" onFinish={onFinish}>
                 <MyFormItem name="firstName" label="Nombre">
                   <Input />
                 </MyFormItem>
@@ -47,7 +74,7 @@ export default function Home() {
                 <MyFormItem name="username" label="Nombre de usuario">
                   <Input/>
                 </MyFormItem>
-                <MyFormItem name="carreer" label="Carrera">
+                {/* <MyFormItem name="carreer" label="Carrera">
                   <Input/>
                 </MyFormItem>
                 <MyFormItem name="aboutme" label="Acerca de mí">
@@ -63,10 +90,8 @@ export default function Home() {
                       <p className="ant-upload-hint">Soporta un archivo PNG a la vez.</p>
                     </Upload.Dragger>
                   </Form.Item>
-                </MyFormItem>
-              </MyFormItemGroup>
-            </MyFormItemGroup>
-            <Button type="primary" htmlType="submit" className="login-button" href="/user/profile" >
+                </MyFormItem> */}
+            <Button type="primary" htmlType="submit" className="login-button">
               Editar perfil
             </Button>
           </Form>

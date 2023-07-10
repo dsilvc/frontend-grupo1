@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/20</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.05% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/19</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
@@ -149,8 +149,7 @@
 <a name='L84'></a><a href='#L84'>84</a>
 <a name='L85'></a><a href='#L85'>85</a>
 <a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L87'></a><a href='#L87'>87</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,15 +160,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -247,17 +245,16 @@ import photo from "../../assets/profile-placeholder.png";
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from "../../redux/hooks";
 &nbsp;
-export default function Home() {
-  const [user, setUser] = useState({
+export default function <span class="fstat-no" title="function not covered" >Home(</span>) {
+  const [user, setUser] = <span class="cstat-no" title="statement not covered" >useState({</span>
     "email":"example@uc.cl",
     "firstName": "Juan",
     "lastName": "Perez",
     "username": "jperez",
   })
-  const [createMode, setCreateMode] = useState(false);
-  const [isClass, setIsClass] = useState(false);
-  const token = useAppSelector(<span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; <span class="cstat-no" title="statement not covered" >state.userReducer.value.token)</span>
-<span class="cstat-no" title="statement not covered" >  console.log("token:", token)</span>
+  const [createMode, setCreateMode] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+  const [isClass, setIsClass] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+  const token = <span class="cstat-no" title="statement not covered" >useAppSelector(<span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; <span class="cstat-no" title="statement not covered" >state.userReducer.value.token)</span></span>
   const router = <span class="cstat-no" title="statement not covered" >useRouter()</span>
   const dispatch = <span class="cstat-no" title="statement not covered" >useAppDispatch();</span>
 &nbsp;
@@ -313,11 +310,11 @@ export default function Home() {
                   Cambiar contraseña
               &lt;/Button&gt;
             &lt;/Form&gt;
-            &lt;Form name="editProfile" layout="vertical" onFinish={onEdit}&gt;
+            {/* &lt;Form name="editProfile" layout="vertical" onFinish={onEdit}&gt;
               &lt;Button type="primary" htmlType="submit" className="form-button"&gt;
                   Modificar perfil
               &lt;/Button&gt;
-            &lt;/Form&gt;
+            &lt;/Form&gt; */}
           &lt;/div&gt;
           
         &lt;/Col&gt;
@@ -331,7 +328,7 @@ export default function Home() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-08T13:39:51.433Z
+                at 2023-07-09T21:52:24.818Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

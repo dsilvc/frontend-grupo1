@@ -5,7 +5,7 @@ dotenv.config();
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    serverUrl: process.env.NEXT_PUBLIC_SERVER_URL,
+    serverUrl: 'https://ksobrgtkbb.execute-api.us-east-1.amazonaws.com/develop',
   },
 }
 
