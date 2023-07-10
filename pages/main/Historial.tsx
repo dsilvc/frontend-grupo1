@@ -33,7 +33,7 @@ const columnsMisServicios = [
     key: 'score',
     render: (review: any) => (
       <Space direction="vertical">
-        <Rate disabled={true} value={review.reduce(function (avg: any, value: any, _ : any, { length }) {
+        <Rate disabled={true} value={review.reduce(function (avg: any, value: any, _ : any, { length }: any) {
           return avg + value.review / length;
           }, 0)}
         />
