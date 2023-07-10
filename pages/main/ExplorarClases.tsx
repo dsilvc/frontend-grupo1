@@ -143,30 +143,34 @@ export default function Explorar() {
 
       <Row gutter={[16, 16]}>
         {
-          services.map((service: any, key) => {
-            return (
-              <Col span={6} key={key}>
-                <Card cover={<img alt="example" src="https://www.the74million.org/wp-content/uploads/2023/02/iStock-470493341-copy.jpg" />}>
-                  <Card.Meta title={service.class_id ? service.clase.name : 'Clase'} description={`Usuario: ${service.user.firstName + ' ' + service.user.lastName}`} />
-                  <Row gutter={[16, 16]}>
-                    <Col sm={12}>
-                      <Button type="primary" className="login-button" disabled={true}>
-                        ${service.price}
-                      </Button>
-                    </Col>
-                    <Col sm={8}>
-                      <Button type="default" onClick={() => postOffer(service.id)}>
-                        Contactar
-                      </Button>
-                    </Col>
-                  </Row>
-
-                </Card>
-              </Col>
-            )
-          })
+          services && services.length > 0 ? (
+            services.map((service: any, key) => {
+              return (
+                <Col span={6} key={key}>
+                  <Card cover={<img alt="example" src="https://www.the74million.org/wp-content/uploads/2023/02/iStock-470493341-copy.jpg" />}>
+                    <Card.Meta title={service.class_id ? service.clase.name : 'Clase'} description={`Usuario: ${service.user.firstName + ' ' + service.user.lastName}`} />
+                    <Row gutter={[16, 16]}>
+                      <Col sm={12}>
+                        <Button type="primary" className="login-button" disabled={true}>
+                          ${service.price}
+                        </Button>
+                      </Col>
+                      <Col sm={8}>
+                        <Button type="default" onClick={() => postOffer(service.id)}>
+                          Contactar
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Card>
+                </Col>
+              )
+            })
+          ) : (
+            <Typography.Text>No hay servicios disponibles por el momento</Typography.Text>
+          )
         }
       </Row>
+
       {createMode && (
         <Modal
           centered={true}

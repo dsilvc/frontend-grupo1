@@ -26,7 +26,7 @@ const LayoutAdmin: FunctionComponent<LayoutProps> = ({ children }) => {
         </div>
       </div>
       <div className="flex flex-1">
-        <div className="h-[calc(100vh-144px)] w-[375px] flex-col items-center bg-[#F0EBB3] py-[20px]">
+        <div className="h-[100vh] w-[15em] flex-col items-center bg-[#F0EBB3] py-[20px] sticky top-0 overflow-auto">
           <div className="mt-[38px] w-full flex-col space-y-[21px] px-7">
             <Link href="PendientesAprobacion" className="font-work-sans text-xl text-[#213144]">
               Aprobar Ofertas

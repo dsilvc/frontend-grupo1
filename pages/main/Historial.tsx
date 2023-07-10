@@ -61,7 +61,7 @@ export default function Historial() {
   return (
     <Layout>
       <div className="mb-10">
-        <h1 className="font-work-sans text-5xl text-[#001529] font-bold">Historial</h1>
+        <h1 className="font-work-sans text-4xl text-[#001529] font-bold pb-[1rem]">Historial</h1>
       </div>
       <div className="flex-1">
         <h2 className="font-work-sans text-2xl text-[#001529] font-bold">Mis servicios</h2>

@@ -77,25 +77,33 @@ export default function PendientesAprobacion() {
       </Row>
 
       <Row gutter={[16, 16]}>
-        {services.map((service: any) => (
-          <Col xs={24} sm={12} md={8} lg={6} key={service.id}>
-            <Card cover={<img alt="example" src="https://www.the74million.org/wp-content/uploads/2023/02/iStock-470493341-copy.jpg" />}>
-              <Card.Meta title={service.class_id ? service.clase.name : 'Clase'} description={`Usuario: ${service.user.firstName + ' ' + service.user.lastName}`} />
-              <Row gutter={[16, 16]}>
-                <Col sm={12}>
-                  <Button type="primary" className="login-button" disabled={true}>
-                    ${service.price}
-                  </Button>
+        {
+          services && services.length > 0 ? (
+            services.map((service: any) => {
+              return (
+                <Col xs={24} sm={12} md={8} lg={6} key={service.id}>
+                  <Card cover={<img alt="example" src="https://www.the74million.org/wp-content/uploads/2023/02/iStock-470493341-copy.jpg" />}>
+                    <Card.Meta title={service.class_id ? service.clase.name : 'Clase'} description={`Usuario: ${service.user.firstName + ' ' + service.user.lastName}`} />
+                    <Row gutter={[16, 16]}>
+                      <Col sm={12}>
+                        <Button type="primary" className="login-button" disabled={true}>
+                          ${service.price}
+                        </Button>
+                      </Col>
+                      <Col sm={8}>
+                        <Button type="default" onClick={() => putApprove(service.id)}>
+                          Aprobar
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Card>
                 </Col>
-                <Col sm={8}>
-                  <Button type="default" onClick={() => putApprove(service.id)}>
-                    Aprobar
-                  </Button>
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-        ))}
+              )
+            })
+          ) : (
+            <Typography.Text>No hay servicios disponibles por el momento</Typography.Text>
+          )
+        }
       </Row>
     </LayoutAdmin>
   );

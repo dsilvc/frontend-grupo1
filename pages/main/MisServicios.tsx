@@ -114,7 +114,7 @@ export default function MisServicios() {
   return (
     <Layout>
       <div className="mb-3">
-        <h1 className="font-work-sans text-5xl text-[#001529] font-bold">Mis Servicios</h1>
+        <h1 className="ffont-work-sans text-4xl text-[#001529] font-bold pb-[1rem]">Mis Servicios</h1>
       </div>
       <div className="mb-10">
         <h3 className="font-work-sans text-[#001529]">En esta sección podrás administrar la información acerca de los servivios que ofreciste y fueron contratados por un tercero</h3>
