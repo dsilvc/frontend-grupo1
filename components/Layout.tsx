@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FunctionComponent, ReactNode } from "react";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch } from "../redux/hooks";
 import { setToken } from "./../redux/features/userSlice";
         
 type LayoutProps = {
