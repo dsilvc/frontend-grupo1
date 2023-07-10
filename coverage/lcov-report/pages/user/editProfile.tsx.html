@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.07% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/13</span>
+                <span class='fraction'>0/13</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/12</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
@@ -146,16 +146,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -166,9 +156,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -222,14 +222,14 @@ import { InboxOutlined } from '@ant-design/icons';
 import { MyFormItemGroup, MyFormItem } from '../../components/utils/utils';
 import { useAppSelector } from "../../redux/hooks";
 &nbsp;
-const normFile = <span class="fstat-no" title="function not covered" >(e</span>: any) =&gt; {
+const normFile = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>: any) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  if (Array.isArray(e)) {</span>
 <span class="cstat-no" title="statement not covered" >    return e;</span>
   }
 <span class="cstat-no" title="statement not covered" >  return e?.fileList;</span>
 };
 &nbsp;
-const props: UploadProps = {
+const props: UploadProps = <span class="cstat-no" title="statement not covered" >{</span>
   multiple: false,
   beforeUpload: <span class="fstat-no" title="function not covered" >(f</span>ile) =&gt; {
     const isPNG = <span class="cstat-no" title="statement not covered" >file.type === 'image/png';</span>
@@ -243,8 +243,8 @@ const props: UploadProps = {
   },
 };
 &nbsp;
-export default function Home() {
-  const token = useAppSelector(<span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; <span class="cstat-no" title="statement not covered" >state.userReducer.value.token)</span>;
+export default function <span class="fstat-no" title="function not covered" >Home(</span>) {
+  const token = <span class="cstat-no" title="statement not covered" >useAppSelector(<span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; <span class="cstat-no" title="statement not covered" >state.userReducer.value.token)</span>;</span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;Layout&gt;
       &lt;Row className="edit-info"&gt;
@@ -298,7 +298,7 @@ export default function Home() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-08T20:01:54.353Z
+                at 2023-07-09T21:52:24.818Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

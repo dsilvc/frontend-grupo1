@@ -73,11 +73,11 @@ export default function Home() {
                   Cambiar contraseña
               </Button>
             </Form>
-            {/* <Form name="editProfile" layout="vertical" onFinish={onEdit}>
+            <Form name="editProfile" layout="vertical" onFinish={onEdit}>
               <Button type="primary" htmlType="submit" className="form-button">
                   Modificar perfil
               </Button>
-            </Form> */}
+            </Form>
           </div>
           
         </Col>
