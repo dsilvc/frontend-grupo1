@@ -1,48 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1688939544867" clover="3.2.0">
-  <project timestamp="1688939544867" name="All files">
-    <metrics statements="316" coveredstatements="14" conditionals="116" coveredconditionals="0" methods="144" coveredmethods="7" elements="576" coveredelements="21" complexity="0" loc="316" ncloc="316" packages="5" files="19" classes="19"/>
+<coverage generated="1688955185553" clover="3.2.0">
+  <project timestamp="1688955185553" name="All files">
+    <metrics statements="406" coveredstatements="22" conditionals="136" coveredconditionals="0" methods="191" coveredmethods="8" elements="733" coveredelements="30" complexity="0" loc="406" ncloc="406" packages="6" files="23" classes="23"/>
     <package name="components">
-      <metrics statements="49" coveredstatements="7" conditionals="24" coveredconditionals="0" methods="16" coveredmethods="3"/>
+      <metrics statements="53" coveredstatements="4" conditionals="22" coveredconditionals="0" methods="17" coveredmethods="1"/>
       <file name="LandingPage.tsx" path="/home/dsilvc/frontend-grupo1/components/LandingPage.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="5" type="stmt"/>
       </file>
       <file name="Layout.tsx" path="/home/dsilvc/frontend-grupo1/components/Layout.tsx">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
+        <metrics statements="4" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+      <file name="LayoutAdmin.tsx" path="/home/dsilvc/frontend-grupo1/components/LayoutAdmin.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
       </file>
       <file name="LogIn.tsx" path="/home/dsilvc/frontend-grupo1/components/LogIn.tsx">
-        <metrics statements="23" coveredstatements="2" conditionals="10" coveredconditionals="0" methods="7" coveredmethods="1"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="19" count="4" type="stmt"/>
+        <metrics statements="23" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="29" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="55" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
+        <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
       </file>
       <file name="LogInBackground.tsx" path="/home/dsilvc/frontend-grupo1/components/LogInBackground.tsx">
         <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="5" count="1" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
       </file>
       <file name="SignIn.tsx" path="/home/dsilvc/frontend-grupo1/components/SignIn.tsx">
@@ -81,10 +88,45 @@
         <line num="11" count="5" type="stmt"/>
       </file>
     </package>
+    <package name="pages.admin">
+      <metrics statements="26" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="13" coveredmethods="0"/>
+      <file name="OfertasAprobadas.tsx" path="/home/dsilvc/frontend-grupo1/pages/admin/OfertasAprobadas.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+      <file name="PendientesAprobacion.tsx" path="/home/dsilvc/frontend-grupo1/pages/admin/PendientesAprobacion.tsx">
+        <metrics statements="25" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="12" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+      </file>
+    </package>
     <package name="pages.main">
-      <metrics statements="174" coveredstatements="3" conditionals="74" coveredconditionals="0" methods="91" coveredmethods="1"/>
+      <metrics statements="201" coveredstatements="7" conditionals="84" coveredconditionals="0" methods="108" coveredmethods="2"/>
       <file name="ExplorarClases.tsx" path="/home/dsilvc/frontend-grupo1/pages/main/ExplorarClases.tsx">
-        <metrics statements="88" coveredstatements="0" conditionals="42" coveredconditionals="0" methods="41" coveredmethods="0"/>
+        <metrics statements="88" coveredstatements="0" conditionals="46" coveredconditionals="0" methods="41" coveredmethods="0"/>
         <line num="14" count="0" type="stmt"/>
         <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="25" count="0" type="stmt"/>
@@ -164,28 +206,55 @@
         <line num="169" count="0" type="stmt"/>
         <line num="176" count="0" type="stmt"/>
         <line num="185" count="0" type="stmt"/>
-        <line num="192" count="0" type="stmt"/>
-        <line num="203" count="0" type="stmt"/>
-        <line num="221" count="0" type="stmt"/>
-        <line num="239" count="0" type="stmt"/>
+        <line num="193" count="0" type="stmt"/>
+        <line num="204" count="0" type="stmt"/>
+        <line num="225" count="0" type="stmt"/>
         <line num="243" count="0" type="stmt"/>
-        <line num="271" count="0" type="stmt"/>
-        <line num="292" count="0" type="stmt"/>
-        <line num="310" count="0" type="stmt"/>
-        <line num="320" count="0" type="stmt"/>
+        <line num="247" count="0" type="stmt"/>
+        <line num="275" count="0" type="stmt"/>
+        <line num="296" count="0" type="stmt"/>
+        <line num="314" count="0" type="stmt"/>
+        <line num="324" count="0" type="stmt"/>
       </file>
       <file name="Historial.tsx" path="/home/dsilvc/frontend-grupo1/pages/main/Historial.tsx">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="61" count="2" type="stmt"/>
+        <metrics statements="30" coveredstatements="3" conditionals="6" coveredconditionals="0" methods="18" coveredmethods="1"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="122" count="5" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="125" count="0" type="stmt"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="131" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="133" count="0" type="stmt"/>
+        <line num="140" count="0" type="stmt"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="146" count="0" type="stmt"/>
+        <line num="147" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="161" count="0" type="stmt"/>
       </file>
       <file name="MisServicios.tsx" path="/home/dsilvc/frontend-grupo1/pages/main/MisServicios.tsx">
-        <metrics statements="39" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="23" coveredmethods="0"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
+        <metrics statements="39" coveredstatements="4" conditionals="10" coveredconditionals="0" methods="23" coveredmethods="1"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
@@ -271,15 +340,45 @@
       </file>
     </package>
     <package name="pages.session">
-      <metrics statements="31" coveredstatements="1" conditionals="6" coveredconditionals="0" methods="11" coveredmethods="1"/>
+      <metrics statements="58" coveredstatements="4" conditionals="14" coveredconditionals="0" methods="23" coveredmethods="2"/>
+      <file name="code.tsx" path="/home/dsilvc/frontend-grupo1/pages/session/code.tsx">
+        <metrics statements="27" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="12" coveredmethods="0"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="73" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+      </file>
       <file name="index.tsx" path="/home/dsilvc/frontend-grupo1/pages/session/index.tsx">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="3" type="stmt"/>
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
       </file>
       <file name="newPassword.tsx" path="/home/dsilvc/frontend-grupo1/pages/session/newPassword.tsx">
-        <metrics statements="19" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
+        <metrics statements="19" coveredstatements="2" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="1"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
@@ -299,9 +398,9 @@
         <line num="52" count="0" type="stmt"/>
       </file>
       <file name="password.tsx" path="/home/dsilvc/frontend-grupo1/pages/session/password.tsx">
-        <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <metrics statements="10" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
@@ -317,7 +416,7 @@
       </file>
     </package>
     <package name="pages.user">
-      <metrics statements="59" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="24" coveredmethods="0"/>
+      <metrics statements="65" coveredstatements="4" conditionals="8" coveredconditionals="0" methods="28" coveredmethods="1"/>
       <file name="changePassword.tsx" path="/home/dsilvc/frontend-grupo1/pages/user/changePassword.tsx">
         <metrics statements="19" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="10" count="0" type="stmt"/>
@@ -354,26 +453,32 @@
         <line num="32" count="0" type="stmt"/>
       </file>
       <file name="editProfile.tsx" path="/home/dsilvc/frontend-grupo1/pages/user/editProfile.tsx">
-        <metrics statements="12" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
+        <metrics statements="18" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="9" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
       </file>
       <file name="profile.tsx" path="/home/dsilvc/frontend-grupo1/pages/user/profile.tsx">
-        <metrics statements="18" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
+        <metrics statements="18" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="1"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>

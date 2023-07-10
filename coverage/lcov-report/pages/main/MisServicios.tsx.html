@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">9.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/43</span>
+                <span class='fraction'>4/43</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">4.34% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/23</span>
+                <span class='fraction'>1/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">10.25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/39</span>
+                <span class='fraction'>4/39</span>
             </div>
         
             
@@ -245,15 +245,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -419,15 +419,15 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useRouter } from 'next/navigation';
 &nbsp;
-const rate: React.FC = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >&lt;Rate allowHalf defaultValue={2.5} /&gt;;</span></span>
+const rate: React.FC = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >&lt;Rate allowHalf defaultValue={2.5} /&gt;;</span>
 &nbsp;
 &nbsp;
 // Cambiar con datos reales iterando sobre la bbdd --&gt; chequeaer como la armaron al final
 &nbsp;
-export default function <span class="fstat-no" title="function not covered" >MisServicios(</span>) {
-  const [myservices, setServices] = <span class="cstat-no" title="statement not covered" >useState&lt;any[]&gt;([]);</span>
-  const [createMode, setCreateMode] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const token = <span class="cstat-no" title="statement not covered" >useAppSelector(<span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; <span class="cstat-no" title="statement not covered" >state.userReducer.value.token)</span></span>
+export default function MisServicios() {
+  const [myservices, setServices] = useState&lt;any[]&gt;([]);
+  const [createMode, setCreateMode] = useState(false);
+  const token = useAppSelector(<span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; <span class="cstat-no" title="statement not covered" >state.userReducer.value.token)</span>
   const router = <span class="cstat-no" title="statement not covered" >useRouter()</span>
   const [reviewItems, setReviewItems] = <span class="cstat-no" title="statement not covered" >useState&lt;any[]&gt;([])</span>
 &nbsp;
@@ -495,7 +495,7 @@ export default function <span class="fstat-no" title="function not covered" >Mis
   ];
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (token){</span>
+<span class="cstat-no" title="statement not covered" >    if (token.length == 0){</span>
 <span class="cstat-no" title="statement not covered" >      router.push('/session')</span>
     }
 <span class="cstat-no" title="statement not covered" >    getServicesbyUser();</span>
@@ -547,7 +547,7 @@ export default function <span class="fstat-no" title="function not covered" >Mis
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;Layout&gt;
       &lt;div className="mb-3"&gt;
-        &lt;h1 className="font-work-sans text-5xl text-[#001529] font-bold"&gt;Mis Servicios&lt;/h1&gt;
+        &lt;h1 className="ffont-work-sans text-4xl text-[#001529] font-bold pb-[1rem]"&gt;Mis Servicios&lt;/h1&gt;
       &lt;/div&gt;
       &lt;div className="mb-10"&gt;
         &lt;h3 className="font-work-sans text-[#001529]"&gt;En esta sección podrás administrar la información acerca de los servivios que ofreciste y fueron contratados por un tercero&lt;/h3&gt;
@@ -592,7 +592,7 @@ export default function <span class="fstat-no" title="function not covered" >Mis
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-09T21:52:24.818Z
+                at 2023-07-10T02:13:05.496Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

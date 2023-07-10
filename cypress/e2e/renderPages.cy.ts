@@ -50,7 +50,6 @@ describe('Renders different pages', () => {
   it('Renders Historial page', () => {
     cy.visit('main/Historial')
     cy.url().should('eq', 'http://localhost:3000/main/Historial')
-    
   })
 
   it('Renders editProfile page', () => {
